@@ -3,10 +3,10 @@ import Request from "@/app/lib/utils/request";
 import { Calendar1, CheckCircle, RefreshCcw, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { ClipLoader, SyncLoader } from "react-spinners";
-import Paystack from "@paystack/inline-js";
 
 
 export default function Subscription(){
+    const [Paystack, setPaystack] = useState(null)
     const [loading, setLoading] = useState(false);
     const [vFailed, vSetFailed] = useState(false);
     const [vLoading, vSetLoading] = useState(false);
@@ -19,9 +19,14 @@ export default function Subscription(){
     const [isProcessing, setIsProcessing] = useState(false);
 
 
-    //geet sub data from server
+    //geet sub data from server and set paystck
     useEffect(() => {
         async function GetSubData(){
+            if (!Paystack){
+                //set paystack
+                const module = await import("@paystack/inline-js");
+                setPaystack(() => module.default);
+            }
             const res = await Request("/app/user/me/subscription?action=get-data", "POST", {});
             if(res.ok) setExpiry(res.expiry);
             if(res.is_processing) setIsProcessing(true);

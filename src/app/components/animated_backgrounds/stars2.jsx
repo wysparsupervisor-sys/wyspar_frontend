@@ -1,3 +1,4 @@
+"use client";
 import Particles from "react-tsparticles";
 import { useCallback } from "react";
 import { loadLinksPreset } from "tsparticles-preset-links";

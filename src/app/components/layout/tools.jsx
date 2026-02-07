@@ -1,3 +1,4 @@
+"use client";
 import { ChevronDown, Feather, HatGlasses, MessageCircleQuestion } from "lucide-react";  
 import { useState } from "react";
 import dynamic from "next/dynamic";

@@ -1,3 +1,4 @@
+"use client";
 import { ClipLoader } from "react-spinners";
 
 export default function Button({children, loading=false, variant, ...props}){

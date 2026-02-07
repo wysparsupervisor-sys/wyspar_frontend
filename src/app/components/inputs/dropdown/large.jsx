@@ -1,3 +1,4 @@
+"use client";
 import { ChevronDown, ChevronUp, Gem, PlusCircle, X } from "lucide-react";
 import { useState } from "react";
 

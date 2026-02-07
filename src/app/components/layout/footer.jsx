@@ -1,3 +1,4 @@
+"use client";
 import { useAnimation, motion } from "framer-motion";
 import { Bell, LayoutDashboard, Lightbulb, Settings, Sparkles, Telescope, UserRound } from "lucide-react";
 import Link from "next/link";

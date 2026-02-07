@@ -1,3 +1,4 @@
+"use client";
 import { APP_NAME } from "@/app/lib/data/app-name";
 import { Telescope, UserRoundPlus } from "lucide-react";
 import Image from "next/image";

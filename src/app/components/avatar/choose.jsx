@@ -1,3 +1,4 @@
+"use client";
 import { createAvatar } from "@dicebear/core";
 import { RefreshCcw } from "lucide-react";
 import Image from "next/image";
