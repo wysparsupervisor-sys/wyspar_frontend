@@ -1,3 +1,4 @@
+"use client";
 import Request from "@/app/lib/utils/request";
 import { DoorOpen } from "lucide-react";
 import { useRouter } from "next/navigation";
