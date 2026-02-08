@@ -50,7 +50,7 @@ export default function Comments({info}){
     
 
     return (
-        <div className="fixed z-2 w-full h-full left-0 top-0 bg-black">
+        <div className="fixed z-2 w-full h-[100dvh] left-0 top-0 bg-black">
             <div ref={containerRef} className="flex flex-col gap-2 w-full h-full overflow-y-scroll">
                 <div className={`fixed flex flex-row items-center gap-2 h-[50px] pl-2 border-b border-gray-900 w-full top-0 left-0 bg-black z-1 flex-row items-center transition-all duration-500 ${hidden ? "top-[-50px]":"top-0"}`}>
                     <div>

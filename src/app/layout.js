@@ -92,9 +92,9 @@ export default function RootLayout({ children }) {
         <link rel="apple-touch-icon" href="/icon-192.png"/>
       </head>
       <body
-        className={`h-screen max-h-[100dvh] ${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`h-[100dvh] ${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <div className="relative flex flex-col h-full max-h-[100dvh] w-screen">
+        <div className="relative flex flex-col h-full w-screen">
           {shouldShowNav && <Tools className={`transition-all duration-500 ${hidden? "opacity-0 pointer-events-none":"opacity-100 pointer-events-auto"}`}/>}
           <div ref={containerRef} className="h-full w-full overflow-y-scroll">
             {children}
