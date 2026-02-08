@@ -90,13 +90,14 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="manifest" href="/manifest.json"/>
         <link rel="apple-touch-icon" href="/icon-192.png"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
       </head>
       <body
-        className={`h-[100dvh] ${geistSans.variable} ${geistMono.variable} antialiased `}
+        className={`h-screen ${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <div className="relative flex flex-col h-full w-screen">
+        <div className="relative flex flex-col h-full w-screen max-h-[100dvh]">
           {shouldShowNav && <Tools className={`transition-all duration-500 ${hidden? "opacity-0 pointer-events-none":"opacity-100 pointer-events-auto"}`}/>}
-          <div ref={containerRef} className="h-full w-full overflow-y-scroll">
+          <div ref={containerRef} className="h-full w-full max-h-[100dvh] overflow-y-scroll">
             {children}
           </div>
           {shouldShowNav && <Footer className={`transition-all duration-300 ${hidden? "bottom-[-60px]":"bottom-0"}`}/>}
