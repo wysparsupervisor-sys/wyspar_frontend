@@ -1,17 +1,20 @@
 "use client";
-import Image from "next/image";
+import { useRef, useState } from "react";
 import BubblesBackground from "../components/animated_backgrounds/bubbles";
-import { Plane } from "lucide-react";
+import StartButton from "./local_comps/start";
+import First from "./local_comps/first";
 
 export default function Welcome(){
+    const audioRef = useRef(null);
+    const [current, setCurrent] = useState(1);
+
     return (
         <div className="h-full">
+            <audio ref={audioRef} src="/welcome.mp3"/>
             <BubblesBackground/>
-            <div className="flex flex-col gap-3 items-center justify-center h-full">
-                <h1 className="text-2xl">Welcome to Wyspar</h1>
-                <Image src="/logo.png" alt="logo" height={130} width={130} className="rounded-2xl border-3 border-white"/>
-                <p className="w-60 bg-[rgb(12,12,12)] rounded-xl rounded-xl p-3 text-sm" style={{boxShadow: "inset 20px 20px 30px black"}}>A campus platform for highly interactive anonymous free speech!</p>
-                <Plane className="mt-5"/>
+            <div className="relative overflow-x-hidden h-full">
+                <StartButton play={audioRef} state={{current, setCurrent}}/>
+                <First state={{current, setCurrent}}/>
             </div>
         </div>
     );
