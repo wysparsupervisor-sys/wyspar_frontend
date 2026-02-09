@@ -83,7 +83,7 @@ export default function Section4(){
 
     return (
         <div className="flex flex-col h-full">
-            <Virtuoso scrollerRef={(el) => virtuosoRef.current = el} endReached={() => fetchPosts()} data={posts} itemContent={(i, post) => <PostBody store={useUserStore} key={post.post_id} info={post}/>}
+            <Virtuoso scrollerRef={(el) => virtuosoRef.current = el} endReached={() => fetchPosts()} data={posts} itemContent={(i, post) => <PostBody isUser={true} store={useUserStore} key={post.post_id} info={post}/>}
                 components={{
                     Footer: () => <div className="flex flex-col text-gray-300 items-center justify-center p-5">
                         {hasMore ? <>

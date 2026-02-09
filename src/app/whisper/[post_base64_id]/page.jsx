@@ -6,7 +6,7 @@ import { FRONTEND_URL } from "../../../../domain";
 export default async function Whisper({params, searchParams}){
     const headersList = await headers();
     const uaString = headersList.get('user-agent') || '';
-    const isBot = /(bot|crawl|slurp|facebookexternalhit|twitterbot|whatsapp)/i.test(uaString);
+    const isBot = /(bot|crawler|spider|slurp|facebookexternalhit|twitterbot|whatsapp)/i.test(uaString);
 
     if(!isBot) return <Preview/>;
 

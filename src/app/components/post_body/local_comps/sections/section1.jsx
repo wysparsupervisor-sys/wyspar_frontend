@@ -34,7 +34,7 @@ export default function Section1({info, store}){
                 </div>
                 {menuIsVisible ? <ChevronUp size={30} onClick={() => setMenuIsVisible(!menuIsVisible)}/>:<ChevronDown size={30} onClick={() => setMenuIsVisible(!menuIsVisible)}/>}
             </div>
-            <Menu info={info} menuIsVisible={menuIsVisible} className={`transition-all duration-500 ${menuIsVisible ? "opacity-100 pointer-events-auto":"opacity-0 pointer-events-none"}`}/>
+            <Menu info={info} school={school || profile.school} menuIsVisible={menuIsVisible} className={`transition-all duration-500 ${menuIsVisible ? "opacity-100 pointer-events-auto":"opacity-0 pointer-events-none"}`}/>
         </div>
     );
 };

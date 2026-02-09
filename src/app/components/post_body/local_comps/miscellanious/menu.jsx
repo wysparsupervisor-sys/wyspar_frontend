@@ -12,7 +12,7 @@ import { SaveToSessionStorage } from "@/app/lib/utils/session-storage";
 import { POST_CATEGORIES } from "@/app/lib/data/post-categories";
 
 
-export default function Menu({className, info, menuIsVisible}){
+export default function Menu({className, info, menuIsVisible, school}){
     const { postStates, _ } = usePostViewContext();
     const [isSure, setIsSure] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ export default function Menu({className, info, menuIsVisible}){
     const SharePost = async () => {
         const shared_url = FRONTEND_URL + "/whisper/" + UUIDToBase62(info.post_id);
         await navigator.share({
-            url: `${shared_url}?ogWysparer=${anonymous_name}&ogText=${content.slice(0, 30)}&ogCat=${post_category}&ogSchool=${info.school}`,
+            url: `${shared_url}?ogWysparer=${anonymous_name}&ogText=${content.slice(0, 30)}&ogCat=${post_category}&ogSchool=${school}`,
         });
     };
 
