@@ -1,12 +1,16 @@
 const UploadFileS3 = async (uploadUrl, file) => {
-    const response = await fetch(uploadUrl, {
-        method: "PUT",
-        headers: { "Content-Type": file.type },
-        body: file,
-    });
+    try {
+        const response = await fetch(uploadUrl, {
+            method: "PUT",
+            headers: { "Content-Type": file.type },
+            body: file,
+        });
 
-    if(response.status === 200) return { ok: true };
-    return { ok: false }
+        if(response.ok) return { ok: true };
+    } catch (err) {
+        console.log(err);
+        return { ok: false }
+    };
 };
 
 
