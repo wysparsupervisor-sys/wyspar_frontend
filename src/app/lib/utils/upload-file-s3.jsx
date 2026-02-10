@@ -1,6 +1,7 @@
 const UploadFileS3 = async (uploadUrl, file) => {
+    let response;
     try {
-        const response = await fetch(uploadUrl, {
+        response = await fetch(uploadUrl, {
             method: "PUT",
             headers: { "Content-Type": file.type },
             body: file,
@@ -8,7 +9,7 @@ const UploadFileS3 = async (uploadUrl, file) => {
 
         if(response.ok) return { ok: true };
     } catch (err) {
-        console.log(err);
+        console.log(err, " :", response);
         return { ok: false }
     };
 };
