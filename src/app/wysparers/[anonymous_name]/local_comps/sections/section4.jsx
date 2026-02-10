@@ -26,6 +26,12 @@ export default function Section4({anonymous_name}){
     const postCategory = useViewerStore((state) => state.postCategory);
     const setScrollListen = useScrollStore((state) => state.setScrollListen);
     const posts = useViewerStore((state) => state.posts[postCategory]) || [];
+    const clearPosts = useViewerStore((state) => state.clearPosts);
+
+    useEffect(() =>  {
+        //clear posts from  previous page visits before rendering neew one
+        clearPosts();
+    }, []);
 
     //for intercetion observer
     const virtuosoRef = useRef(null);
@@ -70,7 +76,7 @@ export default function Section4({anonymous_name}){
 
     return (
         <div className="flex flex-col h-full">
-            <Virtuoso scrollerRef={(el) => virtuosoRef.current = el} endReached={() => fetchPosts()} data={posts} itemContent={(i, post) => <PostBody store={useViewerStore} key={post.post_id} info={post}/>}
+            <Virtuoso increaseViewportBy={{top: 200, bottom: 200}} scrollerRef={(el) => virtuosoRef.current = el} endReached={() => fetchPosts()} data={posts} itemContent={(i, post) => <PostBody store={useViewerStore} key={post.post_id} info={post}/>}
                 components={{
                     Footer: () => <div className="flex flex-col text-gray-300 items-center justify-center p-5">
                         {hasMore ? <>

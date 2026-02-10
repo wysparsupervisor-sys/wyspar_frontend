@@ -8,6 +8,7 @@ import { useUserStore } from "@/app/me/profile/local_comps/stores/user";
 
 
 export default function Section3C({className, info}){
+    const [focused, setFocused] = useState(false);
     const profile = useUserStore((state) => state.profile);
     const setHasUsedCache = useCommentsStore((state) => state.setHasUsedCache);
     const addNewCommentInGroup = useCommentsStore((state) => state.addNewCommentInGroup);
@@ -56,9 +57,9 @@ export default function Section3C({className, info}){
 
 
     return (
-        <div className={`fixed bottom-0 left-0 bg-[rgba(10,10,10,1)] border-t border-gray-900/60 min-h-[70px] w-full flex flex-row justify-between gap-2 p-2 ${className}`}>
+        <div className={`fixed bottom-0 left-0 bg-[rgba(10,10,10,1)] border-t border-gray-900/60 min-h-[70px] w-full flex flex-row justify-between gap-2 p-2 ${focused ? "" : className}`}>
             <div className="w-full rounded-lg bg-black border border-gray-900/60">
-                <textarea onInput={
+                <textarea onBlur={() => setFocused(false)} onFocus={() => setFocused(true)} onInput={
                     (e) => {
                         const el = e.target;
                         el.style.height = "auto";

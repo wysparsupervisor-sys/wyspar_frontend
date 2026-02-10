@@ -5,9 +5,9 @@ import { create } from "zustand";
 export const useViewerStore = create((set) => ({
     profile: null,
     setProfile: (fn) => set(fn),
-    
     postCategory: "all",
     updatePostCategory: (cat) => set({ postCategory: cat }),
+    clearPosts: () => set({ posts: {} }),
     posts: {},
     addNewPosts: (newPosts) => set((state) => {
         const updated = { ...state.posts, [state.postCategory]: [ ...newPosts, ...(state.posts[state.postCategory] || []) ] };

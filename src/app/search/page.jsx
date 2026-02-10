@@ -91,7 +91,7 @@ export default function Search(){
 
             {pageState === "atResult" && <div className="flex flex-col h-full">
                 
-                {searchType ==="wysparer" && <Virtuoso endReached={() => QuerySearch()} data={profiles} itemContent={(i, info) => <div key={i}><UserSearchResultBody info={info}/></div>}
+                {searchType ==="wysparer" && <Virtuoso increaseViewportBy={{top: 200, bottom: 200}} endReached={() => QuerySearch()} data={profiles} itemContent={(i, info) => <div key={i}><UserSearchResultBody info={info}/></div>}
                     components={{
                         Footer: () => <div className="flex flex-col text-gray-300 items-center justify-center p-5">
                             {!isExpired && <div>
@@ -124,7 +124,7 @@ export default function Search(){
                         </div>
                     }}
                 />}
-                {searchType === "whisper" && <Virtuoso endReached={QuerySearch} data={posts} itemContent={(i, post) => <PostBody store={useSearchStore} key={post.post_id} info={post}/>}
+                {searchType === "whisper" && <Virtuoso increaseViewportBy={{top: 200, bottom: 200}} endReached={QuerySearch} data={posts} itemContent={(i, post) => <PostBody store={useSearchStore} key={post.post_id} info={post}/>}
                     components={{
                         Footer: () => <div className="flex flex-col text-gray-300 items-center justify-center p-5">
                             {!isExpired && <div>

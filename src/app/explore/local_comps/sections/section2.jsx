@@ -62,7 +62,7 @@ export default function Section2(){
 
     return (
         <div className="flex flex-col gap-3 h-full">
-            <Virtuoso scrollerRef={(el) => virtuosoRef.current = el} endReached={() => fetchFeed()} data={posts} itemContent={(i, post) => <PostBody store={useFeedStore} key={post.post_id+i} info={post}/>}
+            <Virtuoso increaseViewportBy={{top: 200, bottom: 200}} scrollerRef={(el) => virtuosoRef.current = el} endReached={() => fetchFeed()} data={posts} itemContent={(i, post) => <PostBody store={useFeedStore} key={post.post_id+i} info={post}/>}
                 components={{
                     Footer: () => <div>
                         {hasMore && <div className="relative flex flex-col text-gray-300 items-center justify-center p-5">
