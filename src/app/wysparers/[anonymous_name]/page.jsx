@@ -4,6 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useViewerStore } from "./local_comps/stores/viewer";
 import StarsBackground from "@/app/components/animated_backgrounds/stars";
+import Section4 from "./local_comps/sections/section4";
 import Button from "@/app/components/buttons";
 import Link from "next/link";
 import { RefreshCcw } from "lucide-react";
