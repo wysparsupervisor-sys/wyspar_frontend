@@ -8,7 +8,7 @@ export default function Section3({info}){
 
     return (
         <div className="flex flex-row text-sm items-center text-gray-400 gap-2">
-            <div className={`flex flex-row items-center gap-1 border ${location_status == 0 && "border-green-600/50"} ${location_status == 1 && "border-[orange]/50"} ${location_status == 2 && "border-red-700/50"} ${location_status == 3 && "border-gray-700"} pl-3 pr-3 rounded-full`}><MapPin size={17} color="red"/>{LOCATION_CLASSES[location_status]}</div>
+            <div className={`flex flex-row items-center gap-1 border ${location_status == 0 && "border-green-600/70"} ${location_status == 1 && "border-[orange]/50"} ${location_status == 2 && "border-red-700/50"} ${location_status == 3 && "border-gray-700"} pl-3 pr-3 rounded-full`}><MapPin size={17} color="red"/>{LOCATION_CLASSES[location_status]}</div>
             <div className="flex flex-row items-center gap-1"><Icon.icon size={17} color={Icon.color}/>{POST_CATEGORIES[post_category]}</div>
         </div>
     );
