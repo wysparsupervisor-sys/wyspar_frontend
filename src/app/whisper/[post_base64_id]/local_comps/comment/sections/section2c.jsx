@@ -148,8 +148,8 @@ export default function Section2C({info}){
         <div className="mt-2 border-t border-gray-900 p-3 pt-3">
             <p className="text-lg flex flex-row items-center gap-2"><Ghost/> Ghosts</p>
             <div className="flex flex-col gap-5 mt-5">
-                {comments.map((details, i) => (
-                    <div key={i}><ReplyHead info={info} details={details}/></div>
+                {comments.map((details) => (
+                    <div key={details.comment_id}><ReplyHead info={info} details={details}/></div>
                 ))}
 
                 {/**intersection observer*/}
