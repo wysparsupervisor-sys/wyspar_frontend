@@ -13,7 +13,7 @@ export default async function GetLocationStatus(setGeoRes, setData) {
             const accuracy = p.coords.accuracy;
             const school = "futo";
 
-            alert(latitude, longitude, accuracy)
+            alert(`${latitude + " " + longitude + " " + accuracy}`);
             const res = await Request(`/app/user/me/get?payload=location-status&school=${school}&lat=${latitude}&long=${longitude}&accuracy=${accuracy}`, "GET");
             setGeoRes(res.location_status);
             setData(current => produce(current, draft => { draft.form.coords = {
