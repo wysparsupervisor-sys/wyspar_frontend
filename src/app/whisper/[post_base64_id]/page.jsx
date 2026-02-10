@@ -12,8 +12,8 @@ export default async function Whisper({params}){
 
     const og_obj = {
         anonymous_name: params?.ogWysparer || "Wysparer",
-        school: params?.ogSchool || "",
-        content: params?.ogText || "Check out!",
+        school: params?.ogSchool || "A school",
+        content: params?.ogText || "Check out and see the whisper!",
         post_category: params?.ogCategory || "whisper",
         image: FRONTEND_URL + `/og/${Math.floor(Math.random() * 5) + 1}.jpeg`,
     };
