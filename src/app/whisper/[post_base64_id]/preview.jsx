@@ -37,7 +37,7 @@ export default function Preview(){
     }, []);
 
     return (
-        <div className="flex h-full flex-col ites-center justify-center">
+        <div className="flex h-[100dvh] max-h-[100dvh] flex-col ites-center justify-center">
             {post_info ? <Comments info={post_info}/>:<StarsBackground2/>}
             <div className="h-full flex flex-col items-center justify-center gap-3">
                 {failed && <>
