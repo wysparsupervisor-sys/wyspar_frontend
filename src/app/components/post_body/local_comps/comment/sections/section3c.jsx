@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { ClipLoader } from "react-spinners";
 import { useCommentsStore } from "../stores/comments";
 import { usePostViewContext } from "../../../context";
-import { useUserStore } from "@/app/me/profile/local_comps/stores/user";
+import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
 
 
 export default function Section3C({className, info}){

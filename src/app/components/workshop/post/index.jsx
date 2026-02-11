@@ -11,7 +11,7 @@ import { produce } from "immer";
 import Request from "@/app/lib/utils/request";
 import UploadFileS3 from "@/app/lib/utils/upload-file-s3";
 import { BarLoader, SyncLoader } from "react-spinners";
-import { useUserStore } from "@/app/me/profile/local_comps/stores/user";
+import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
 import ExpiryWarning from "../../micellanious/expired-warning";
 
 

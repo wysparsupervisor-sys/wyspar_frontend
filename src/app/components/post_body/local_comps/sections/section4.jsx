@@ -2,7 +2,7 @@ import { FlagTriangleLeft, FlagTriangleRight, Ghost, Heart } from "lucide-react"
 import ClickEffect from "../../../effects/click-effect";
 import { usePostViewContext } from "../../context";
 import { produce } from "immer";
-import { updateInteraction } from "@/services/interaction";
+import { updateInteraction } from "@/app/services/interaction";
 import millify from "millify";
 
 

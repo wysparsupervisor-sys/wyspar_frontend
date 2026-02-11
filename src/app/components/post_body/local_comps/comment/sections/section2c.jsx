@@ -12,7 +12,7 @@ import { GetFromSessionStorage } from "@/app/lib/utils/session-storage";
 import { produce } from "immer";
 import Link from "next/link";
 import { FRONTEND_URL } from "../../../../../../../domain";
-import { useUserStore } from "@/app/me/profile/local_comps/stores/user";
+import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
 import ExpiryWarning from "@/app/components/micellanious/expired-warning";
 
 //font
