@@ -17,5 +17,6 @@ export default async function Whisper({params}){
         post_category: params?.ogCategory || "whisper",
         image: FRONTEND_URL + `/og/${Math.floor(Math.random() * 5) + 1}.jpeg`,
     };
+    
     if(isBot) return <OgMeta og_obj={og_obj}/>
 };
