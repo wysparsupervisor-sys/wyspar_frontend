@@ -149,7 +149,7 @@ export default function Section2C({info}){
             <p className="text-lg flex flex-row items-center gap-2"><Ghost/> Ghosts</p>
             <div className="flex flex-col gap-5 mt-5">
                 {comments.map((details) => (
-                    <div key={details.comment_id}><ReplyHead info={info} details={details}/></div>
+                    <ReplyHead key={details.comment_id} info={info} details={details}/>
                 ))}
 
                 {/**intersection observer*/}
