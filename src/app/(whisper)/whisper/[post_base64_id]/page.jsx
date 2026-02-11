@@ -8,7 +8,8 @@ export default async function Whisper({params}){
     const uaString = headersList.get('user-agent') || '';
     const isBot = /(bot|crawler|spider|slurp|facebookexternalhit|twitterbot|whatsapp)/i.test(uaString);
 
-    
+    if(!isBot) return <Preview/>;
+
     const og_obj = {
         anonymous_name: params?.ogWysparer || "Wysparer",
         school: params?.ogSchool || "A school",
@@ -17,5 +18,5 @@ export default async function Whisper({params}){
         image: FRONTEND_URL + `/og/${Math.floor(Math.random() * 5) + 1}.jpeg`,
     };
     
-    return <OgMeta og_obj={og_obj}/>
+    if(isBot) return <OgMeta og_obj={og_obj}/>
 };

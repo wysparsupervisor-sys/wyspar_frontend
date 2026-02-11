@@ -1,5 +1,5 @@
 import { POST_CATEGORIES } from "@/app/lib/data/post-categories";
-import Head from "next/head";
+
 
 export default function OgMeta({og_obj}){
     return (
