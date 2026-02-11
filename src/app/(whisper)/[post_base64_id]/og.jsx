@@ -10,7 +10,7 @@ export default function OgMeta({og_obj}){
                 <meta property="og:description" content={og_obj.content +  "...y. open wyspar now"}/>
                 <meta property="og:image" content={og_obj.image}/>
             </Head>
-            <body>{JSON.stringify(og_obj)}</body>
+            <body></body>
         </html>
     );
 };
