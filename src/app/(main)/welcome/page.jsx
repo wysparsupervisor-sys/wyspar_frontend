@@ -34,7 +34,7 @@ export default function Welcome(){
                 <Fourth state={{current}}/>
                 <Fifth state={{current}}/>
                 <Sixth state={{current}}/>
-                <Last state={{current}}/>
+                <Last state={{current, setCurrent}}/>
             </div>
         </div>
     );

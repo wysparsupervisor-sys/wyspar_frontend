@@ -8,7 +8,6 @@ export function proxy(req) {
     const uaString = req.headers.get('user-agent') || '';
     const isBot = /(bot|crawler|spider|slurp|facebookexternalhit|twitterbot|whatsapp)/i.test(uaString);
     if (pathname.startsWith("/whisper") && isBot) return NextResponse.next();
-    if (pathname.startsWith("/welcome")) return NextResponse.next();
 
     const token = req.cookies.get("user_access_token");
     const ungatedPaths = ["/login", "/signup", "/welcome", "/recover"];
@@ -25,7 +24,7 @@ export function proxy(req) {
         return NextResponse.redirect(loginUrl);
     };
 
-    if(["/login", "/signup"].includes(pathname) && token) {
+    if(["/login", "/signup", "/welcome"].includes(pathname) && token) {
         //if user is signed in then redirect them to profile
         return NextResponse.redirect(new URL("/explore", req.url));
     };
