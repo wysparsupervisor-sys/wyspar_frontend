@@ -2,7 +2,7 @@ import { PlayCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-export default function StartButton({play, state}){
+export default function StartButton({play, state, begin}){
     const { current, setCurrent } = state;
     const [isHidden, setIsHidden] = useState(current !== 1);
 
@@ -21,7 +21,7 @@ export default function StartButton({play, state}){
                     </motion.linearGradient>
                 </defs>
 
-                <PlayCircle onClick={() => { play.current.play(); setCurrent(2) }} stroke="url(#grad)" size={80} strokeWidth={1.5}/>
+                <PlayCircle onClick={() => { play.current.play(); begin() }} stroke="url(#grad)" size={80} strokeWidth={1.5}/>
             </svg>
         </div>
     )
