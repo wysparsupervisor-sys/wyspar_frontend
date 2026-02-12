@@ -27,7 +27,7 @@ export default function Welcome(){
             <audio ref={audioRef} src="/welcome.mp3"/>
             <BubblesBackground/>
             <div className="relative overflow-x-hidden h-full">
-                <StartButton begin={BeginIntervel} play={audioRef} state={{current, setCurrent}}/>
+                <StartButton play={audioRef} state={{current, setCurrent}}/>
                 <First state={{current, setCurrent}}/>
                 <Second state={{current}}/>
                 <Third state={{current}}/>

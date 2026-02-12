@@ -2,7 +2,7 @@ import { PlayCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-export default function StartButton({play, state, begin}){
+export default function StartButton({state, begin}){
     const { current, setCurrent } = state;
     const [isHidden, setIsHidden] = useState(current !== 1);
 
