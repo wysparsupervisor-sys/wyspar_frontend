@@ -1,6 +1,5 @@
 const CACHE_NAME = 'pwa-cache-v1';
 const ASSETS = [
-    '/me/profile',
     '/icon.png',
     "/logo.png",
     '/icon-192.png',
