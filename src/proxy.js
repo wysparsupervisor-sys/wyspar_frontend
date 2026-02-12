@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export function proxy(req) {
     const { path } = req.nextUrl;
-    const pathname = pathname.replace(/\/$/,  "") || "/";
+    const pathname = path.replace(/\/$/,  "") || "/";
     const token = req.cookies.get("user_access_token");
     const ungatedPaths = ["/login", "/signup", "/welcome", "/recover", "/welcome/"];
     const isUngated = ungatedPaths.some(path => pathname.startsWith(path));
