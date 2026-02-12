@@ -8,6 +8,7 @@ export default function Third({state}){
     useEffect(() => {
         setIsHidden(current !== 4);
     }, [current]);
+    
     return (
         <div className={`z-2 top-0 left-0 fixed w-full h-full flex flex-col gap-9 pl-5 justify-center transition-all ${isHidden ? "opacity-0 pointer-events-none":"opacity-100"}`} style={{transitionDuration: "4s"}}>
             <b className="text-3xl flex flex-row items-center gap-3">Anonymous <HatGlasses strokeWidth={2} size={40}/></b>
