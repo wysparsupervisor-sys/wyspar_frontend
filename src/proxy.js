@@ -4,13 +4,13 @@ import { NextResponse } from "next/server";
 export function proxy(req) {
     const { pathname } = req.nextUrl;
     const token = req.cookies.get("user_access_token");
-    const ungatedPaths = ["/login", "/signup", "/welcome", "/recover"];
+    const ungatedPaths = ["/login", "/signup", "/welcome", "/recover", "/welcome/"];
     const isUngated = ungatedPaths.some(path => pathname.startsWith(path));
 
     //redirect all root paths to welcome
     if(pathname === "/") return NextResponse.redirect(new URL("/welcome", req.url));
     
-    if(pathname === "/welcome") return NextResponse.next();
+    if(pathname === "/welcome" || pathname === "/welcome/") return NextResponse.next();
 
     //if ppathname is a post preview and it's a robot viewing just allow them
     const uaString = req.headers.get('user-agent') || '';
