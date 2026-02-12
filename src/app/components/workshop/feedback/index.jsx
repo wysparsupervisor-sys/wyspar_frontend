@@ -19,7 +19,7 @@ export default function MakeFeedback({pageIsOpen}){
     };
 
     return (
-        <div className="absolute flex flex-col w-full h-full bg-black z-2">
+        <div className="absolute flex flex-col w-full h-full max-h-[100dvh] bg-black z-2">
             <StarsBackground/>
             <div className="flex text-sm flex-row gap-2 items-center p-2">
                 <X size={30} strokeWidth={1.6} onClick={() => pageIsOpen(false)}/>

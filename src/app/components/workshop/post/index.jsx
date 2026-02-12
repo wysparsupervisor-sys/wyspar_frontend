@@ -100,7 +100,7 @@ export default function MakePost({pageIsOPen}){
 
     return (
         <PostContext.Provider value={{data, setData}}>
-            <div className="absolute w-full h-full">
+            <div className="absolute w-full h-full max-h-[100dvh]">
                 <div className="flex flex-col relative w-full h-full bg-black z-2">
                     <StarsBackground/>
                     <PostHeader pageIsOpen={pageIsOPen}/>
