@@ -34,6 +34,8 @@ export default function RootLayout({ children }) {
 
   //monitor number of times app was opened
   useEffect(() => {
+    const ungated = ["/login", "/signup", "/recover", "/welcome"];
+    if(ungated.includes(pathname)) return;
     const opened = GetFromSessionStorage("opened");
     if (!opened) {
       SaveToSessionStorage("opened", "hi", 1000 * 60 * 60 * 24);
