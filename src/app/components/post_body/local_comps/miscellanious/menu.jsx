@@ -14,6 +14,8 @@ import { POST_CATEGORIES } from "@/app/lib/data/post-categories";
 
 export default function Menu({className, info, menuIsVisible, school}){
     const { postStates, _ } = usePostViewContext();
+    const profile = postStates.Store((state) => state.profile);
+     
     const [isSure, setIsSure] = useState(false);
     const [loading, setLoading] = useState(false);
     const [failed, setFailed] = useState(false);
@@ -24,7 +26,7 @@ export default function Menu({className, info, menuIsVisible, school}){
     }, [menuIsVisible]);
     
     const SharePost = async () => {
-        const shared_url = FRONTEND_URL + "/whisper" + `/${school}` + `/${post_category}` + `/${anonymous_name}` + `/${encodeURIComponent(content.slice(0,50))}/` + UUIDToBase62(info.post_id);
+        const shared_url = FRONTEND_URL + "/whisper" + `/${school}` + `/${post_category}` + `/${anonymous_name || (postStates.isUser ===  true ? profile.anonymous_name : "Anonymous")}` + `/${encodeURIComponent(content.slice(0,50))}/` + UUIDToBase62(info.post_id);
         await navigator.share({
             url: shared_url
         });
