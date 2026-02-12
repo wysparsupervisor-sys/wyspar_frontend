@@ -24,7 +24,7 @@ export function proxy(req) {
         return NextResponse.redirect(loginUrl);
     };
 
-    if(["/login", "/signup", "/welcome"].includes(pathname) && token) {
+    if(["/login", "/signup"].includes(pathname) && token) {
         //if user is signed in then redirect them to profile
         return NextResponse.redirect(new URL("/me/profile", req.url));
     };
