@@ -11,9 +11,9 @@ export default async function Whisper({params}){
     if(!isBot) return <Preview/>;
 
     const og_obj = {
-        anonymous_name: params.anonymous_name || "Wysparer",
-        school: params.school || "A school",
-        content: params.content || "Check out and see the whisper!",
+        anonymous_name: params.anonymous_name,
+        school: params.school,
+        content: params.content,
         post_category: params.post_category,
         image: FRONTEND_URL + `/og/${Math.floor(Math.random() * 5) + 1}.jpeg`,
     };
