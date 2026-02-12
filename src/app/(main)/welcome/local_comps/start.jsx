@@ -2,7 +2,7 @@ import { PlayCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-export default function StartButton({state, begin}){
+export default function StartButton({state, play, begin}){
     const { current, setCurrent } = state;
     const [isHidden, setIsHidden] = useState(current !== 1);
 
@@ -11,7 +11,7 @@ export default function StartButton({state, begin}){
     }, [current]);
 
     return (
-        <div className={`flex-shrink-0 z-1 h-full w-full flex flex-col gap-3 items-center justify-center transition-all ease-out ${isHidden ? "opacity-0":"opacity-100"}`} style={{transitionDuration:"2s"}}>
+        <div className={`flex-shrink-0 z-50 h-full w-full flex flex-col gap-3 items-center justify-center transition-all ease-out ${isHidden ? "opacity-0":"opacity-100"}`} style={{transitionDuration:"2s"}}>
             <h1 className="text-xl">Start your Journey</h1>
             <svg width={80} height={80} viewBox="0 0 80 80">
                 <defs>
