@@ -22,11 +22,11 @@ export default function Menu({className, info, menuIsVisible, school}){
     useEffect(() => {
         setIsSure(false);
     }, [menuIsVisible]);
-
+    
     const SharePost = async () => {
-        const shared_url = FRONTEND_URL + "/whisper/" + UUIDToBase62(info.post_id);
+        const shared_url = FRONTEND_URL + "/whisper" + `/${school}` + `/${post_category}` + `/${anonymous_name}` + `/${encodeURIComponent(content)}/` + UUIDToBase62(info.post_id);
         await navigator.share({
-            url: `${shared_url}?ogWysparer=${anonymous_name}&ogText=${content.slice(0, 30)}&ogCat=${post_category}&ogSchool=${school}`,
+            url: shared_url
         });
     };
 

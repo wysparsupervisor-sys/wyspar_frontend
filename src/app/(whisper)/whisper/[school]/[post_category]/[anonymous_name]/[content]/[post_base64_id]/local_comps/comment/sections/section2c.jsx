@@ -11,7 +11,7 @@ import { useCommentsStore } from "../stores/comments";
 import { GetFromSessionStorage } from "@/app/lib/utils/session-storage";
 import { produce } from "immer";
 import Link from "next/link";
-import { FRONTEND_URL } from "../../../../../../../../domain";
+import { FRONTEND_URL } from "../../../../../../../../../../../../domain";
 import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
 
 //font

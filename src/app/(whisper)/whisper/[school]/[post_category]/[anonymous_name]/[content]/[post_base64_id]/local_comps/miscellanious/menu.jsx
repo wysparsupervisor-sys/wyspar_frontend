@@ -1,16 +1,16 @@
 import { UUIDToBase62 } from "@/app/lib/utils/base-converter";
 import { Share2 } from "lucide-react";
 import ClickEffect from "@/app/components/effects/click-effect";
-import { FRONTEND_URL } from "../../../../../../../domain";
+import { FRONTEND_URL } from "../../../../../../../../../../../domain";
 
 
 export default function Menu({className, info}){
     const { anonymous_name, content, post_category } = info;
     
     const SharePost = async () => {
-        const shared_url = FRONTEND_URL + "/whisper/" + UUIDToBase62(info.post_id);
+        const shared_url = FRONTEND_URL + "/whisper" + `/${school}` + `/${post_category}` + `/${anonymous_name}` + `/${encodeURIComponent(content)}/` + UUIDToBase62(info.post_id);
         await navigator.share({
-            url: `${shared_url}?ogWysparer=${anonymous_name}&ogText=${content.slice(0, 30)}&ogCat=${post_category}&ogSchool=${info.school}`,
+            url: shared_url
         });
     };
 

@@ -1,7 +1,7 @@
 import { headers } from "next/headers";
 import Preview from "./preview";
 import OgMeta from "./og";
-import { FRONTEND_URL } from "../../../../../domain";
+import { FRONTEND_URL } from "../../../../../../../../../domain";
 
 export default async function Whisper({params}){
     const headersList = await headers();

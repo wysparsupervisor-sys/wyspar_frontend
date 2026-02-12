@@ -3,7 +3,7 @@ import { POST_STYLES } from "@/app/lib/data/post-styles";
 import { Inter } from "next/font/google";
 import { useState } from "react";
 import LazyImage from "@/app/components/images/lazy-image";
-import { MEDIA_GET_URL } from "../../../../../../../domain";
+import { MEDIA_GET_URL } from "../../../../../../../../../../../domain";
 
 
 //font

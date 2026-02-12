@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import * as Collection from "@dicebear/collection";
 import Menu from "../miscellanious/menu";
 import Link from "next/link";
-import { FRONTEND_URL } from "../../../../../../../domain";
+import { FRONTEND_URL } from "../../../../../../../../../../../domain";
 
 
 export default function Section1({info, store}){
