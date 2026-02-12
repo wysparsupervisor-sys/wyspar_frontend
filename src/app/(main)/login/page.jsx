@@ -29,7 +29,7 @@ export default function Login() {
         setLoading(true); setResponse("");
         const res = await Request("/auth/login", "POST", { email: email, password: password });
         setLoading(false); setResponse(res.msg);
-        if(res.ok) redirect("/me/profile");
+        if(res.ok) redirect("/explore");
     };
 
     return (

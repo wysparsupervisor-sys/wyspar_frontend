@@ -20,7 +20,7 @@ export default function Password() {
         setLoading(true);
         const res = await Request("/auth/signup?payload=password", "POST", { password: password }); setLoading(false);
         if (!res.ok) return setResponse(res.msg);
-        redirect("/me/profile");
+        redirect("/explore");
     };
 
     return (

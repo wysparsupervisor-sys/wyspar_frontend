@@ -25,7 +25,7 @@ export default function Password(){
         setLoading(true);
         const res = await Request("/auth/recover?action=password", "POST", { password: password });
         setLoading(false); setResponse(res.msg);
-        if (res.ok) return router.push("/login");
+        if (res.ok) return router.push("/explore");
     };
 
     return (
