@@ -17,7 +17,7 @@ export function proxy(req) {
     if(pathname === "/") return NextResponse.redirect(new URL("/welcome", req.url));
 
     //prevents checking for token when user tries to visit routes that do not require token
-    const isUngated = ungatedPaths.some(path => pathname.startsWith(path));
+    const isUngated = ungatedPaths.some(path => pathname === path || pathname.startsWith(`${path}/`));
    
     //if user is not signed in then redirect them to login
     if(!isUngated && !token) {
