@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 
 
 export function proxy(req) {
-    if(pathname === "/welcome") return NextResponse.next();
     const { pathname } = req.nextUrl;
+    if(pathname === "/welcome") return NextResponse.next();
 
     //if ppathname is a post preview and it's a robot viewing just allow them
     const uaString = req.headers.get('user-agent') || '';
