@@ -6,6 +6,36 @@ const ASSETS = [
     '/icon-512.png'
 ];
 
+
+//handle push notifications
+self.addEventListener("push", (event) => {
+    const data = event.data.json();
+    
+    event.waitUntil(
+        self.registration.showNotification(data.title, {
+            body: data.body,
+            icon: data.icon,
+            data: { url: data.url },
+            actions: data.actions,
+        })
+    );
+});
+
+self.addEventListener("notificationclick", event => {
+    if(!event.action) return;
+    event.notification.close();
+
+    if(event.action === "view"){
+        event.waitUntil(
+            clients.openWindow(event.notification.data.url)
+        );
+    } else if (event.action === "reply"){
+        event.waitUntil(
+            clients.openWindow(event.notification.data.url)
+        );
+    };
+})
+
 //cache assets on install
 self.addEventListener("install", (event) => {
     event.waitUntil(

@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
   //register service worker
   useEffect(() => {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register("/sw.js").then(reg => console.log('Service worker registered', reg)).catch(err => console.log('Sw registration failed', err));
+      navigator.serviceWorker.register("/sw.js", { scope: "/" }).then(reg => console.log('Service worker registered', reg)).catch(err => console.log('Sw registration failed', err));
     };
   }, []);
 

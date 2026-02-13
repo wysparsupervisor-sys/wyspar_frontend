@@ -1,4 +1,4 @@
-const HOST = "10.77.42.66"; //makes it easier when i wanna view on my phone. Simply change host to pc ip 
+const HOST = "localhost"; //makes it easier when i wanna view on my phone. Simply change host to pc ip 
 const isProduction = process.env.NODE_ENV === "production";
 
 export const FRONTEND_URL = isProduction ? "https://www.wyspar.com" : `http://${HOST}:3000`;
