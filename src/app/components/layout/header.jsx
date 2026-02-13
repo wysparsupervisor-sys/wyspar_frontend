@@ -32,7 +32,7 @@ export default function Header({className , ...props}){
     useEffect(() => {
         async function CheckNotices(){
             const is_pushing = GetFromLocalStorage("is_pushing");
-            if(!is_pushing) return;
+            if(is_pushing) return;
 
             const push_status = GetFromLocalStorage("push_status");
             if(!push_status) return alert("Click the bell/notification icon at the top right of your screen to receive post notifications!🔥⚡👑");
