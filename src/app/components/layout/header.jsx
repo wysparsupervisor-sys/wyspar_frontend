@@ -63,7 +63,7 @@ export default function Header({className , ...props}){
                 const res = await Request("/app/user/me/push-subscription?action=save", "POST", subscription);
                 if (res.ok){
                     alert("You will now receive notifications from Wyspar! 💥⚡👑");
-                    SaveToLocalStorage("is_pushing", "", 1000 * 60 * 60 * 24 * 365);
+                    SaveToLocalStorage("is_pushing", "jh", 1000 * 60 * 60 * 24 * 365);
                 };
                 if(!res.ok){
                     await subscription.unsubscribe();
