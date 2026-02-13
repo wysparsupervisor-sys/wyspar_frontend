@@ -32,15 +32,14 @@ export default function Header({className , ...props}){
     useEffect(() => {
         async function CheckNotices(){
             const is_pushing = GetFromLocalStorage("is_pushing");
-            if(is_pushing) return;
+            if(is_pushing === "") return;
 
             const push_status = GetFromLocalStorage("push_status");
-            if(!push_status) return alert("Click the bell/notification icon at the top right of your screen to receive post notifications!🔥⚡👑");
-
-            SaveToLocalStorage("push_status", "", 1000 * 60 * 60 * 24);
+            if(push_status !== "") {
+                SaveToLocalStorage("push_status", "", 1000 * 60 * 60 * 24);
+                return alert("Click the bell/notification icon at the top right of your screen to receive post notifications!🔥⚡👑");
+            };
         };
-
-        CheckNotices();
     }, []);
 
     const SubscribeToNotices = async () => {
@@ -51,8 +50,6 @@ export default function Header({className , ...props}){
             if(permission !== "granted") return alert("Wyspar can't send you notifications because you denied. Try changing your browser settings.");
 
             const registration = await navigator.serviceWorker.ready;
-            const exists = await registration.pushManager.getSubscription();
-            if(exists) return alert("You've already subscribed to Wyspar notifications 😎");
 
             const subscription = await registration.pushManager.subscribe({
                 userVisibleOnly: true,
@@ -63,7 +60,7 @@ export default function Header({className , ...props}){
                 const res = await Request("/app/user/me/push-subscription?action=save", "POST", subscription);
                 if (res.ok){
                     alert("You will now receive notifications from Wyspar! 💥⚡👑");
-                    SaveToLocalStorage("is_pushing", "jh", 1000 * 60 * 60 * 24 * 365);
+                    SaveToLocalStorage("is_pushing", "", 1000 * 60 * 60 * 24 * 365);
                 };
                 if(!res.ok){
                     await subscription.unsubscribe();
@@ -85,7 +82,7 @@ export default function Header({className , ...props}){
                 <Image src="/logo.png" height={47} width={47} alt="logo" className="rounded-full"/><b className="text-lg">{APP_NAME}</b>
             </div>
             <div className="pr-1 flex flex-row items-center gap-3">
-                <Bell onClick={SubscribeToNotices}/>
+                {false &&  <Bell onClick={SubscribeToNotices}/>}
                 {pathname === "/me/profile" && <UserRoundPlus onClick={shareWyspar}/>}
                 {pathname === "/explore" && <ClickEffect><Link href="/search"><Telescope strokeWidth={3}/></Link></ClickEffect>}
             </div>
