@@ -1,11 +1,13 @@
 "use client";
 import { ChevronDown, Feather, HatGlasses, MessageCircleQuestion } from "lucide-react";  
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { ClockLoader } from "react-spinners";
 import StarsBackground from "../animated_backgrounds/stars";
+import { GetFromLocalStorage, SaveToLocalStorage } from "@/app/lib/utils/local-storage";
 const MakePost = dynamic(() => import("../workshop/post"), { loading: () => <LoadingAnimation/>});
 const MakeFeedback = dynamic(() => import( "../workshop/feedback"), { loading: () => <LoadingAnimation/>});
+import { motion } from "framer-motion";
 
 
 function LoadingAnimation(){
@@ -23,6 +25,17 @@ export default function Tools({className}){
     const [isPosting, setIsPosting] = useState(false);
     const [isFeedbacking, setIsFeedbacking] = useState(false);
 
+    const [shouldPost, setShouldPost] = useState(null);
+
+    useEffect(() => {
+        //decide wether or not to show has posted notification
+        const hasPosted = GetFromLocalStorage("has_posted");
+        if (!hasPosted) {
+            setShouldPost(true);
+            SaveToLocalStorage("has_posted", true, 1000 * 60 * 60 * 24); //last a day;
+        };
+    }, []);
+
     return(
         <>
             <div className={`flex flex-col items-right justify-right gap-2 text-3xl fixed bottom-20 right-5 z-2 ${className}`}>            
@@ -38,6 +51,25 @@ export default function Tools({className}){
                 <MakePost pageIsOPen={setIsPosting}/>
             </>}
             {isFeedbacking && <MakeFeedback pageIsOpen={setIsFeedbacking}/>}
+            <div>
+                {shouldPost && <div className="fixed z-10 top-0 left-0 h-[100dvh] w-full bg-black/80 flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center gap-5">
+                        <h1 className="text-lg">Reveal something today</h1>     
+                        <svg width={75} height={75} viewBox="0 0 80 80">
+                                <defs>
+                                    <motion.linearGradient gradientUnits="userSpaceOnUse" animate={{gradientTransform: ["rotate(0, 40, 40)", "rotate(360, 40, 40)"]}} transition={{duration: 5, repeat: Infinity, ease: "linear"}} id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stopColor="#ff0000ff"/>
+                                        <stop offset="50%" stopColor="#0026ffff"/>
+                                        <stop offset="100%" stopColor="#eeff00ff"/>
+                                    </motion.linearGradient>
+                                </defs>
+
+                                <HatGlasses stroke="url(#grad)" onClick={() => {setIsPosting(true); setShouldPost(false)}} size={75} strokeWidth={1.5}/>
+                            </svg>
+                        <h1 className="text-lg">Touch the icon and you'll be heard</h1>
+                    </div>
+                </div>}
+            </div>
         </>
     );
 };
