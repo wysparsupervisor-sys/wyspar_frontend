@@ -48,6 +48,7 @@ export default function MakePost({pageIsOPen}){
 
 
     const SendPost = async () => {
+        if(!data.form.category) return alert("Add a posting category 💎 At the top right of your screen! 🥤")
         const body = { type: data.form.type, text: data.form.text, category: data.form.category, coords: data.form.coords, style: data.form.style };
         
         //set posting true to block further interaction with ui and display certain animations
@@ -109,7 +110,7 @@ export default function MakePost({pageIsOPen}){
                         {data.form.type == "statement" && <StatementPost/>}
                     </div>
                     <PostFooter resetFunc={ResetState}/>
-                    {(data.form.text && data.temp.location_status && data.form.text.length >= 3 && data.form.category) && <div onClick={SendPost} className="absolute right-5 bottom-[15%] p-3 bg-blue-900 rounded-full"><Send/></div>}
+                    {(data.form.text && data.temp.location_status && data.form.text.length >= 3) && <div onClick={SendPost} className="absolute right-5 bottom-[15%] p-3 bg-blue-900 rounded-full"><Send/></div>}
                 </div>
                 {postingState && <div className="absolute flex flex-col items-center justify-center top-0 left-0 bg-black/90 h-full w-full z-9">
                     <div className="flex flex-col gap-4 items-center">
