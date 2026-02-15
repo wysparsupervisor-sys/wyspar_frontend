@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Header from "../components/layout/header";
 import Footer from "../components/layout/footer";
 import Tools from "../components/layout/tools";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import "@/app/services/interaction"; //necessary to track and update user post interactions across routes
 import { useScrollStore } from "./store";
 import { GetFromSessionStorage, SaveToSessionStorage } from "../lib/utils/session-storage";
@@ -98,7 +98,7 @@ export default function RootLayout({ children }) {
         className={`h-screen ${geistSans.variable} ${geistMono.variable} antialiased `}
       >
         <div className="relative flex flex-col h-full w-screen max-h-[100dvh]">
-          {shouldShowNav && <Tools className={`transition-all duration-500 ${hidden? "opacity-0 pointer-events-none":"opacity-100 pointer-events-auto"}`}/>}
+          {shouldShowNav && <Suspense><Tools className={`transition-all duration-500 ${hidden? "opacity-0 pointer-events-none":"opacity-100 pointer-events-auto"}`}/></Suspense>}
           <div ref={containerRef} className="h-full w-full max-h-[100dvh] overflow-y-scroll">
             {children}
           </div>
