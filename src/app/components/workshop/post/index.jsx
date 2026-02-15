@@ -1,7 +1,7 @@
 "use client";
 import StarsBackground from "../../animated_backgrounds/stars";
 import { Calendar1, Check, HatGlasses, ImageUp, RefreshCcw, Send, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostHeader from "./sections/header";
 import PostFooter from "./sections/footer";
 import StatementPost from "./types/statement";
@@ -13,22 +13,37 @@ import UploadFileS3 from "@/app/lib/utils/upload-file-s3";
 import { BarLoader, SyncLoader } from "react-spinners";
 import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
 import ExpiryWarning from "../../micellanious/expired-warning";
+import { useRouter, useSearchParams } from "next/navigation";
 
 
 
 
 export default function MakePost({pageIsOPen}){
+    const router = useRouter();
+    const searchParams = useSearchParams();
     const addNewPosts = useUserStore((state) => state.addNewPosts);
     const setHasUsedCache = useUserStore((state) => state.setHasUsedCache);
     const setProfile = useUserStore((state) => state.setProfile);
     const [postingState, setPostingState] = useState(null);
 
+    //clear  params imediately they visit page
+    useEffect(() => {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("type");
+        url.searchParams.delete("content");
+        url.searchParams.delete("category");
+        url.searchParams.delete("isPosting");
+
+        router.replace(url.toString(), { scroll:false });
+        
+    }, []);
+
     const [data, setData] = useState({
         form: { 
-            type: "article",
-            text: "",
+            type: searchParams.get("type") || "article",
+            text: decodeURIComponent(searchParams.get("content") || "") || "",
             style: "",
-            category:  "",
+            category: searchParams.get("category") || "",
             images: [],
             coords: null,
         },

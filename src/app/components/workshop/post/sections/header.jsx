@@ -11,7 +11,7 @@ import { POST_CATEGORIES, POST_CATEGORIES_ICONS } from "@/app/lib/data/post-cate
 export default function PostHeader({pageIsOpen}){
     const { data, setData } = usePostContext();
     const [geoRes, setGeoRes] = useState(null);
-    const [selectedCart, setSelectedCart] = useState();
+    const [selectedCart, setSelectedCart] = useState(data.form.category || null);
     const icons = POST_CATEGORIES_ICONS;
 
     function GetLocationData(){ 

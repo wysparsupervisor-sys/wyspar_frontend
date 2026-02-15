@@ -8,6 +8,7 @@ import { GetFromLocalStorage, SaveToLocalStorage } from "@/app/lib/utils/local-s
 const MakePost = dynamic(() => import("../workshop/post"), { loading: () => <LoadingAnimation/>});
 const MakeFeedback = dynamic(() => import( "../workshop/feedback"), { loading: () => <LoadingAnimation/>});
 import { motion } from "framer-motion";
+import { useSearchParams } from "next/navigation";
 
 
 function LoadingAnimation(){
@@ -21,8 +22,9 @@ function LoadingAnimation(){
 
 
 export default function Tools({className}){
+    const searchParams = useSearchParams();
     const [isOpen, setIsOpen] = useState(false);
-    const [isPosting, setIsPosting] = useState(false);
+    const [isPosting, setIsPosting] = useState(searchParams.get("isPosting") === "true");
     const [isFeedbacking, setIsFeedbacking] = useState(false);
 
     const [shouldPost, setShouldPost] = useState(null);

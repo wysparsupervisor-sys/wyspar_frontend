@@ -28,7 +28,7 @@ export default function StatementPost(){
             </div>
             <div className="h-full flex flex-col justify-center">
                 <div className={`outline-none ${selectedStyle} flex flex-col justify-center items-center text-center p-3 ${data.form.text.length < 90 ? "text-2xl":"text-lg"}`} style={{aspectRatio: "4/3"}}>
-                    <textarea maxLength={180} className="text-center w-full outline-none" onInput={
+                    <textarea defaultValue={data.form.text} maxLength={180} className="text-center w-full outline-none" onInput={
                         (e) => {
                             const el = e.target;
                             el.style.height = "auto";
