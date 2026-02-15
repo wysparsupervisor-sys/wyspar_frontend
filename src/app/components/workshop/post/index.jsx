@@ -32,7 +32,7 @@ export default function MakePost({pageIsOPen}){
         url.searchParams.delete("type");
         url.searchParams.delete("content");
         url.searchParams.delete("category");
-        url.searchParams.delete("isPosting");
+        url.searchParams.delete("isposting");
 
         router.replace(url.toString(), { scroll:false });
         

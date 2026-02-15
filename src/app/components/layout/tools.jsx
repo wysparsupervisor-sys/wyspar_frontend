@@ -24,7 +24,7 @@ function LoadingAnimation(){
 export default function Tools({className}){
     const searchParams = useSearchParams();
     const [isOpen, setIsOpen] = useState(false);
-    const [isPosting, setIsPosting] = useState(searchParams.get("isPosting") === "true");
+    const [isPosting, setIsPosting] = useState(searchParams.get("isposting") === "true");
     const [isFeedbacking, setIsFeedbacking] = useState(false);
 
     const [shouldPost, setShouldPost] = useState(null);
