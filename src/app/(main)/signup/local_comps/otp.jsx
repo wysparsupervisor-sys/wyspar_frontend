@@ -44,7 +44,7 @@ export default function OTP({context}) {
             <div className="w-full flex flex-row justify-center mb-4">
                 <KeyRound size={60} className="text-gray-500"/>
             </div>
-            {response ? <p className="text-sm text-[orangered]" style={{lineHeight: "1.3"}}>{response}</p> : <p className="text-sm text-gray-400" style={{lineHeight: "1.3"}}>Enter the code sent to your email address <b className="text-white">({formInfo.email})</b></p>}
+            {response ? <p className="text-sm text-[orangered]" style={{lineHeight: "1.3"}}>{response}</p> : <p className="text-sm text-gray-400" style={{lineHeight: "1.3"}}>Enter the code sent to your email address <b className="text-white">({formInfo.email})</b>(If you didn't find it try checking your spam folder.)</p>}
             <input ref={otpRef} type="text" maxLength="6" inputMode="numeric" className="mt-3 outline-none tracking-widest w-full min-w-0 w-full text-center text-lg bg-[rgb(30,30,30)] rounded-sm p-2" placeholder="Code" onInput={
                 (e) => {
                     e.target.value = e.target.value.replace(/\D/g, "");

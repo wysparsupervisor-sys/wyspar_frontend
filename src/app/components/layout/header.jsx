@@ -1,6 +1,6 @@
 "use client";
 import { APP_NAME } from "@/app/lib/data/app-name";
-import { Bell, Dot, Telescope, UserRoundPlus, X } from "lucide-react";
+import { Bell, Dot, Download, Telescope, UserRoundPlus, X } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ClickEffect from "../effects/click-effect";
@@ -21,7 +21,32 @@ function urlBase64ToUint8Array(base64String){
 
 
 export default function Header({className , ...props}){
+    const [defferedPrompt, setDefferedPrompt] = useState(null);
+    const [showInstallBtn, setShowInstallBtn] = useState(false);
     const [isRecievingPush, setIsReceivingPush] = useState();
+
+    useEffect(() => {
+        const isInstalled = window.matchMedia("(display-mode:standalone)").matches || window.navigator.standalone === true;
+        if(isInstalled) return;
+        
+        const handler = (e) => {
+            e.preventDefault();
+            setDefferedPrompt(e);
+            setShowInstallBtn(true);
+        };
+
+        window.addEventListener("beforeinstallprompt", handler);
+        return () => window.removeEventListener("beforeinstallprompt", handler);
+    });
+
+    const HandleInstall = async () => {
+        if(!defferedPrompt) return;
+        defferedPrompt.prompt();
+
+        const choice = await defferedPrompt.userChoice;
+        if(choice.outcome === "dismissed") return;
+        setShowInstallBtn(false);
+    };
 
     const pathname = usePathname();
     const shareWyspar = async () => {
@@ -94,6 +119,7 @@ export default function Header({className , ...props}){
                 <Image src="/logo.png" height={47} width={47} alt="logo" className="rounded-full"/><b className="text-lg">{APP_NAME}</b>
             </div>
             <div className="pr-1 flex flex-row items-center gap-3">
+                {showInstallBtn && <b onClick={HandleInstall} className="flex flex-row items-center gap-2 text-sm border-2 pl-4 pr-4 p-0.5 rounded-full bg-[greenyellow]/60">Install <Download strokeWidth={3} size={15}/></b>}
                 {pathname === "/me/profile" && <UserRoundPlus onClick={shareWyspar}/>}
                 {pathname === "/explore" && <ClickEffect><Link href="/search"><Telescope strokeWidth={3}/></Link></ClickEffect>}
                 <div className="relative">
