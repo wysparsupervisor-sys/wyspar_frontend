@@ -13,7 +13,7 @@ export default function Fifth({state}){
             <b className="text-3xl flex flex-row items-center gap-3"><Sparkles size={40} strokeWidth={2}/>Category Rich</b>
             <div className="bg-[rgb(10,10,10)] rounded-lg text-sm max-w-85 p-3 border-l-3 border-red-600" style={{boxShadow: "inset 10px 10px 20px black", lineHeight: 1.5}}>
                 Buzz, fun, confession, real talk, advice, rant, or question. <b>Whatever's on your mind, we've got a category for it 🔥⚡</b>
-                 Poost freely, stay organized, and let your thoughts shine 💥🏆👩‍🎓
+                 Post freely, stay organized, and let your thoughts shine 💥🏆👩‍🎓
             </div>
             <b className="flex flex-wrap gap-2 items-center pr-3">
                 fun😂 <Dot/> realtalk🎤 <Dot/> confession💞 <Dot/> advice🎯 <Dot/> rant💢 <Dot/> academic📕 <Dot/> alot....

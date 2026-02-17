@@ -43,7 +43,7 @@ export default function Avatar({context}) {
 
     return (
         <>
-            <p className="text-sm text-gray-400 mb-2" style={{lineHeight: "1.3"}}>Generate your anonymous avater.</p>
+            <p className="text-sm text-gray-400 mb-2" style={{lineHeight: "1.3"}}>Generate your avatar.</p>
             <select className="bg-black w-full p-2 border border-gray-900 rounded-md outline-none" onChange={(e) => setStyleChoice(e.target.value)}>
                 <option className="p-2" value="random">Random</option>
                 {styles.map((style, i) =>  (

@@ -18,7 +18,7 @@ export default function ArticlePost(){
     return (
         <>
             <div className="p-3">
-                <textarea defaultValue={data.form.text} maxLength={1000} placeholder="Speak Freely, Stay Anonymous." onChange={handleChange} className="text-lg text-gray-300 w-full outline-none" onInput={
+                <textarea defaultValue={data.form.text} maxLength={1000} placeholder="Speak Freely, Virtual." onChange={handleChange} className="text-lg text-gray-300 w-full outline-none" onInput={
                     (e) => {
                         const el = e.target;
                         el.style.height = "auto";

@@ -13,7 +13,7 @@ export default function Sixth({state}){
             <b className="text-3xl flex flex-row items-center gap-3"><Sparkles size={40} strokeWidth={2}/>Build Wyspar</b>
             <div className="bg-[rgb(10,10,10)] rounded-lg text-sm max-w-85 p-3 border-l-3 border-red-600" style={{boxShadow: "inset 10px 10px 20px black", lineHeight: 1.5}}>
                 Be part of the community and <b>Keep the vibe growing 🔥⚡</b> A single bottle 🥤 of Pepsi a <b>Month</b> helps us <b>build new features </b> 
-                for you✨. Guess what? We're cooking up something wild called <b>Ultranonymous...👀</b> it's going to <b>flip the game 🔥</b> And you <b>don't have to buy us a bottle for the first 20 days. Just dive and vibe!😎👑</b>
+                for you✨. Guess what? We're cooking up something wild called <b>Ultravirtual...👀</b> it's going to <b>flip the game 🔥</b> And you <b>don't have to buy us a bottle for the first 20 days. Just dive and vibe!😎👑</b>
             </div>
         </div>
     );

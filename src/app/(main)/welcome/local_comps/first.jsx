@@ -11,7 +11,7 @@ export default function First({play, state}){
         <div className={`z-2 top-0  max-w-[95%] left-0 fixed w-full h-full flex flex-col gap-8 pl-5 justify-center transition-all ${isHidden ? "opacity-0 pointer-events-none":"opacity-100"}`} style={{transitionDuration: "4s"}}>
             <b className="text-3xl">Welcome To Wyspar!</b>
             <div className="bg-[rgb(10,10,10)] rounded-lg text-sm max-w-85 p-3 border-l-3 border-red-600" style={{boxShadow: "inset 10px 10px 20px black", lineHeight: 1.5}}>
-                🚀Imagine a social media app <b>just for campus students! 👩‍🎓</b> Anonymous 🎭 Location-based 🌎 Category-Focused ⚡ Super interactive 👑 Say whatever's on your mind <b>without anyone knowing it's you 😎</b>
+                🚀Imagine a social media app <b>just for campus students! 👩‍🎓</b> Virtual 🎭 Location-based 🌎 Category-Focused ⚡ Super interactive 👑 Say whatever's on your mind <b>with people only knowing your virtual profile 😎</b>
                 Freedom to speak, connect, and explore like never before... Isn't that Epic??! 
             </div>
             <div className="flex flex-wrap gap-3 items-center text-sm">
