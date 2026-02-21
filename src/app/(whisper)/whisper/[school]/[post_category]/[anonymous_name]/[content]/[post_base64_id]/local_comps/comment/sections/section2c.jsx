@@ -61,8 +61,8 @@ function ReplyHead({details, info}){
                 <span className="flex flex-row gap-1 items-center border border-gray-900/60 p-1 pl-3 pr-3 rounded-full text-[10px]"><Link href={FRONTEND_URL + "/wysparers/" + encodeURIComponent(anonymous_name)}><span>@{anonymous_name}</span></Link> <span>{school.toUpperCase()}</span>  {TimeAgo(created_at)}</span>
                 <span className={`${inter} break-all inline-block min-w-30 min-h-5 bg-[#000020] rounded-xl pl-3 p-2 mt-1 text-gray-200`}>
                     {isSliced ? 
-                        <div><b className="text-[greenyellow]">{comment.slice(0,100).match(/@[\w]+/) && comment.slice(0,100).match(/@[\w]+/)[0]}</b>{comment.slice(0,100).replace(/^\s*@[\w]+/, "")}</div>:
-                        <div><b className="text-[greenyellow]">{comment.match(/@[\w]+/) && comment.match(/@[\w]+/)[0]}</b>{comment.replace(/^\s*@[\w]+/, "")}</div>
+                        <div><b className="text-[greenyellow]">{comment.slice(0,100).match(/@\S+/) && comment.slice(0,100).match(/@\S+/)[0]}</b>{comment.slice(0,100).replace(/^\s*@\S+/, "")}</div>:
+                        <div><b className="text-[greenyellow]">{comment.match(/@\S+/) && comment.match(/@\S+/)[0]}</b>{comment.replace(/^\s*@\S+/, "")}</div>
                     } 
                     {comment.slice(0,100).length !== comment.length && <>{isSliced ? <b className="font-semibold text-white" onClick={() => setIsSliced(false)}>...Peak</b>:<b onClick={() => setIsSliced(true)} className="font-semibold text-white">Peak less</b>}</>}
                 </span>
