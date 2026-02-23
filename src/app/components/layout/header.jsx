@@ -9,6 +9,7 @@ import { FRONTEND_URL } from "../../../../domain";
 import Request from "@/app/lib/utils/request";
 import { useEffect, useState } from "react";
 import { GetFromLocalStorage, SaveToLocalStorage } from "@/app/lib/utils/local-storage";
+import { ClipLoader } from "react-spinners";
 const VAPID_PUBLIC_KEY = "BAts9LBPzoXaSi3SrSIb7HNoaK4eaL6q39WJExURcrwLZXtFjQMg_95zFt_8LPHHr0eKS0Zuav2eCEKW1qKRpTA";
 
 
@@ -24,6 +25,7 @@ export default function Header({className , ...props}){
     const [defferedPrompt, setDefferedPrompt] = useState(null);
     const [showInstallBtn, setShowInstallBtn] = useState(false);
     const [isRecievingPush, setIsReceivingPush] = useState();
+    const [registering, setRegistering] = useState(false);
 
     useEffect(() => {
         const isInstalled = window.matchMedia("(display-mode:standalone)").matches || window.navigator.standalone === true;
@@ -82,6 +84,7 @@ export default function Header({className , ...props}){
             const permission = await Notification.requestPermission();
             if(permission !== "granted") return alert("Wyspar can't send you notifications because you denied. Try changing your browser settings.");
 
+            setRegistering(true);
             const registration = await navigator.serviceWorker.ready;
 
             //check if user is already subed
@@ -95,6 +98,7 @@ export default function Header({className , ...props}){
 
             try {
                 const res = await Request("/app/user/me/push-subscription?action=save", "POST", subscription);
+                setRegistering(false);
                 if (res.ok){
                     alert("You will now receive notifications from Wyspar! 💥⚡👑");
                     setIsReceivingPush(true);
@@ -104,6 +108,7 @@ export default function Header({className , ...props}){
                     alert("Something didn't go right. Try again.");
                 };
             } catch (err) {
+                setRegistering(false);
                 await subscription.unsubscribe();
                 alert("Something didn't go right. Try again.");
             };
@@ -122,10 +127,10 @@ export default function Header({className , ...props}){
                 {showInstallBtn && <b onClick={HandleInstall} className="flex flex-row items-center gap-2 text-sm border-2 pl-4 pr-4 p-0.5 rounded-full bg-[greenyellow]/60">Install <Download strokeWidth={3} size={15}/></b>}
                 {pathname === "/me/profile" && <UserRoundPlus onClick={shareWyspar}/>}
                 {pathname === "/explore" && <ClickEffect><Link href="/search"><Telescope strokeWidth={3}/></Link></ClickEffect>}
-                <div className="relative">
+                {registering ? <ClipLoader color="white" size={20}/>:<div className="relative">
                     <Bell onClick={SubscribeToNotices}/>
                     {isRecievingPush ? <Dot className="top-[-21px] right-[-17px] absolute pointer-events-none" color="greenyellow" size={50}/>:<X className="top-[-4px] right-[-1px] absolute pointer-events-none" color="red" size={15} strokeWidth={3}/>}
-                </div>
+                </div>}
             </div>
         </div>
     );
