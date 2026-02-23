@@ -84,12 +84,13 @@ export default function Header({className , ...props}){
             const permission = await Notification.requestPermission();
             if(permission !== "granted") return alert("Wyspar can't send you notifications because you denied. Try changing your browser settings.");
 
-            setRegistering(true);
             const registration = await navigator.serviceWorker.ready;
 
             //check if user is already subed
             const is_subscribed_to_push = await registration.pushManager.getSubscription();
             if(is_subscribed_to_push) return alert("You've already subscribed to receive notifications 😎⚡💥");
+
+            setRegistering(true);
 
             const subscription = await registration.pushManager.subscribe({
                 userVisibleOnly: true,
