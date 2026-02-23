@@ -7,7 +7,7 @@ export const useViewerStore = create((set) => ({
     setProfile: (fn) => set(fn),
     postCategory: "all",
     updatePostCategory: (cat) => set({ postCategory: cat }),
-    clearPosts: () => set({ posts: {} }),
+    clearAll: () => set({ posts: {}, profile: null, postCategory: "all" }),
     posts: {},
     addNewPosts: (newPosts) => set((state) => {
         const updated = { ...state.posts, [state.postCategory]: [ ...newPosts, ...(state.posts[state.postCategory] || []) ] };

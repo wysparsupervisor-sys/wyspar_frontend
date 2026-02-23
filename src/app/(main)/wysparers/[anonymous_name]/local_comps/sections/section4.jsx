@@ -26,12 +26,6 @@ export default function Section4({anonymous_name}){
     const postCategory = useViewerStore((state) => state.postCategory);
     const setScrollListen = useScrollStore((state) => state.setScrollListen);
     const posts = useViewerStore((state) => state.posts[postCategory]) || [];
-    const clearPosts = useViewerStore((state) => state.clearPosts);
-
-    useEffect(() =>  {
-        //clear posts from  previous page visits before rendering neew one
-        clearPosts();
-    }, []);
 
     //for intercetion observer
     const virtuosoRef = useRef(null);

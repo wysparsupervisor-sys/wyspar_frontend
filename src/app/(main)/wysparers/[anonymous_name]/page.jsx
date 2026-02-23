@@ -17,6 +17,7 @@ export default function ProfileVisitor(){
     const { anonymous_name } = params;
     const profile =  useViewerStore((state) => state.profile);
     const setProfile =  useViewerStore((state) => state.setProfile);
+    const clearAll = useViewerStore((state) => state.clearAll);
     const [hasExpired, setHasExpired] = useState(false);
     const [exists, setExists] = useState();
     const [retry, setRetry] = useState();
@@ -34,6 +35,7 @@ export default function ProfileVisitor(){
     };
 
     useEffect(() => {
+        clearAll(); //reset incase it previously contained a user
         GetProfileData();
     }, []);
 
