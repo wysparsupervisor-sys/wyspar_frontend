@@ -27,9 +27,12 @@ const geistMono = Geist_Mono({
 export default function RootLayout({ children }) {
   //register service worker
   useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register("/sw.js", { scope: "/" }).then(reg => console.log('Service worker registered', reg)).catch(err => console.log('Sw registration failed', err));
+    async function RegisterWorker() {
+      if ('serviceWorker' in navigator) {
+        await navigator.serviceWorker.register("/sw.js", { scope: "/" }).then(reg => console.log('Service worker registered', reg)).catch(err => console.log('Sw registration failed', err));
+      };
     };
+    RegisterWorker();
   }, []);
 
   //monitor number of times app was opened

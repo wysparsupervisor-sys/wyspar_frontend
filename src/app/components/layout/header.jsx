@@ -39,7 +39,7 @@ export default function Header({className , ...props}){
 
         window.addEventListener("beforeinstallprompt", handler);
         return () => window.removeEventListener("beforeinstallprompt", handler);
-    });
+    }, []);
 
     const HandleInstall = async () => {
         if(!defferedPrompt) return;
