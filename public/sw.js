@@ -9,7 +9,7 @@ const ASSETS = [
 
 //handle push notifications
 self.addEventListener("push", (event) => {
-    const data = event.data.json();
+    const data = event.data ? event.data.json() : {};
     event.waitUntil(
         self.registration.showNotification(data.title, {
             body: data.body,
@@ -57,13 +57,9 @@ self.addEventListener("activate", (event) => {
 
 //server cached assets when offline
 self.addEventListener('fetch', (event) => {
-    event.respondWith(
-        fetch(event.request).then(res => {
-            const resClone = res.clone();
-            event.waitUntil(
-                caches.open(CACHE_NAME).then(cache => cache.put(event.request, resClone))
-            );
-            return res;
-        }).catch(() => caches.match(event.request))
-    );
+    if (ASSETS.includes(new URL(event.request.url).pathname)) {
+        event.respondWith(
+            caches.match(event.request)
+        );
+    };
 });
