@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown, Feather, HatGlasses, MessageCircleQuestion } from "lucide-react";  
+import { ChevronDown, Feather, HatGlasses, MessageCircleQuestion, Plus } from "lucide-react";  
 import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { ClockLoader } from "react-spinners";
@@ -45,8 +45,8 @@ export default function Tools({className}){
                     <div onClick={() => setIsPosting(true)} className="bg-[#000030] rounded-full p-2 border border-gray-700"><Feather/></div>
                     <div onClick={() => setIsFeedbacking(true)} className="bg-[#0a6464ff] rounded-full p-2 border border-gray-700"><MessageCircleQuestion/></div>
                 </div>}
-                <div className="bg-[#5a0019ff] flex-grow-0 flex flex-row justify-center rounded-full p-3 border border-gray-900" onClick={() => setIsOpen(!isOpen)}>
-                    {isOpen ? <ChevronDown size={30}/>:<HatGlasses size={30}/>}
+                <div className="bg-[rgb(0,161,153)] flex-grow-0 flex flex-row justify-center rounded-full p-3 border-2 border-white" onClick={() => setIsPosting(!isPosting)}>
+                    {isOpen ? <ChevronDown size={30}/>:<Plus size={30} strokeWidth={3}/>}
                 </div>
             </div>
             {isPosting && <>
