@@ -1,4 +1,4 @@
-import { FlagTriangleLeft, FlagTriangleRight, Ghost, Heart } from "lucide-react";
+import { FlagTriangleLeft, FlagTriangleRight, Ghost, Heart, MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react";
 import ClickEffect from "../../../effects/click-effect";
 import { usePostViewContext } from "../../context";
 import { produce } from "immer";
@@ -35,11 +35,11 @@ export default function Section4({info}){
     return (
         <div className="flex flex-row items-center justify-between bg-[rgba(0,0,39,1)]/80 border border-gray-900/70 pt-1 pb-1 pl-3 pr-3 text-sm text-gray-400 rounded-lg">
             <div className={baseStyle}>
-                <ClickEffect><FlagTriangleRight onClick={() => {setVotedFunc(1)}} strokeWidth={1.5} size={17} color={vote_value === 1 ? "greenyellow" : "white"} fill={vote_value === 1 ? "greenyellow":""}/></ClickEffect>
+                <ClickEffect><ThumbsUp onClick={() => {setVotedFunc(1)}} strokeWidth={1.5} size={17} color={vote_value === 1 ? "greenyellow" : "white"} fill={vote_value === 1 ? "greenyellow":""}/></ClickEffect>
                 {millify(total_upvote, {precision: 1})}
             </div>
             <div className={baseStyle}>
-                <ClickEffect><FlagTriangleLeft onClick={() => {setVotedFunc(-1)}} strokeWidth={1.5} size={17} color={vote_value === -1 ? "red" : "white"} fill={vote_value === -1 ? "red":""}/></ClickEffect>
+                <ClickEffect><ThumbsDown onClick={() => {setVotedFunc(-1)}} strokeWidth={1.5} size={17} color={vote_value === -1 ? "red" : "white"} fill={vote_value === -1 ? "red":""}/></ClickEffect>
                 {millify(total_downvote, {precision: 1})}
             </div>
             <div className={baseStyle}>
@@ -47,7 +47,7 @@ export default function Section4({info}){
                 {millify(total_love, {precision: 1})}
             </div>
             <div className={baseStyle}>
-                <ClickEffect><Ghost onClick={() => setPostStates(c => produce(c, draft => { draft.isCommenting = true }))} strokeWidth={1.5} size={17} color="white"/></ClickEffect>
+                <ClickEffect><MessageCircle onClick={() => setPostStates(c => produce(c, draft => { draft.isCommenting = true }))} strokeWidth={1.5} size={17} color="white"/></ClickEffect>
                 {millify(total_comment, {precision: 1})}
             </div>
         </div>
