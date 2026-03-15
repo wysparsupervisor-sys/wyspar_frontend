@@ -1,6 +1,6 @@
 "use client";
 import { useAnimation, motion } from "framer-motion";
-import { Bell, LayoutDashboard, Lightbulb, Settings, Sparkles, Telescope, UserRound } from "lucide-react";
+import { Bell, LayoutDashboard, Lightbulb, MessageCircle, MessageCircleMore, MessagesSquare, Settings, Sparkles, Telescope, UserRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -47,14 +47,16 @@ export default function Footer({className}){
         if(currentRoute === "/me/profile") setActiveId("b");
         if(currentRoute === "/search") setActiveId("c");
         if(currentRoute === "/manage") setActiveId("e");
+        if(currentRoute === "/chat") setActiveId("f");
     },[]);
     
     
     return (
-        <div className={`fixed h-[50px] w-full bottom-0 pl-5 pr-5 bg-black flex flex-row items-center justify-between border-t-2 border-gray-900 ${className}`}>
+        <div className={`fixed h-[50px] w-full bottom-0 pl-3 pr-3 bg-black flex flex-row items-center justify-between border-t-2 border-gray-900 ${className}`}>
             <FooterElement route="/explore" Icon={Sparkles} text="Explore" id="a" activeId={activeId} setActiveId={setActiveId}/>
             <FooterElement route="/search" Icon={Telescope} text="Find" id="c" activeId={activeId} setActiveId={setActiveId}/>
             <FooterElement route="/me/profile" Icon={UserRound} text="Profile" id="b" activeId={activeId} setActiveId={setActiveId}/>
+            <FooterElement route="/chat" Icon={MessagesSquare} text="Chat" id="f" activeId={activeId} setActiveId={setActiveId}/>
             <FooterElement route="/manage" Icon={Settings} text="Manage" id="e" activeId={activeId} setActiveId={setActiveId}/>
         </div>
     );

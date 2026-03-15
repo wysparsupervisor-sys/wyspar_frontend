@@ -87,7 +87,7 @@ export default function RootLayout({ children }) {
   }, [scrollListen]);
 
   //list of all routes that require nav & heaader
-  const pagesWithNav = ["/me/profile", "/explore", "/manage"];
+  const pagesWithNav = ["/me/profile", "/explore", "/manage", "/chat"];
   const shouldShowNav = pagesWithNav.includes(pathname);
 
   return (
