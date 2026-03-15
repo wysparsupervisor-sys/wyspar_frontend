@@ -17,6 +17,10 @@ self.addEventListener("push", (event) => {
             image: data.image,
             data: { url: data.url },
             actions: data.actions,
+            ...(data.tag && {
+                tag: data.tag,
+                renotify: true,
+            })
         })
     );
 });
@@ -48,8 +52,7 @@ self.addEventListener("install", (event) => {
 self.addEventListener("activate", (event) => {
     event.waitUntil(
         caches.keys().then(keys => Promise.all(
-                keys.filter(key => key !== CACHE_NAME
-            ).map(key => caches.delete(key))
+            keys.filter(key => key !== CACHE_NAME).map(key => caches.delete(key))
         ))
     );
     self.clients.claim();
@@ -59,7 +62,17 @@ self.addEventListener("activate", (event) => {
 self.addEventListener('fetch', (event) => {
     if (ASSETS.includes(new URL(event.request.url).pathname)) {
         event.respondWith(
-            caches.match(event.request)
+            caches.match(event.request).then((cachedRes) => {
+                if (cachedRes) return cachedRes;
+                return fetch(event.request).then((networkRes) => {
+                    const resClone = networkRes.clone();
+                    caches.open(CACHE_NAME).then((cache) => {
+                        cache.put(event.request, resClone);
+                    });
+
+                    return networkRes;
+                })
+            })
         );
     };
 });
