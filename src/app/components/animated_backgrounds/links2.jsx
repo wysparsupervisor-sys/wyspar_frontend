@@ -1,7 +1,7 @@
 "use client";
-import Particles from "react-tsparticles";
-import { useCallback } from "react";
-import { loadLinksPreset } from "tsparticles-preset-links";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { useEffect, useCallback } from "react";
+import { loadLinksPreset } from "@tsparticles/preset-links";
 
 export default function LinksBackground2({...props}){
   const particleInit = useCallback(async (engine) => {

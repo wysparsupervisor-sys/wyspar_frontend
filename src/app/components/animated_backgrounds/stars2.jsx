@@ -1,14 +1,16 @@
 "use client";
-import Particles from "react-tsparticles";
-import { useCallback } from "react";
-import { loadLinksPreset } from "tsparticles-preset-links";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { useEffect } from "react";
+import { loadLinksPreset } from "@tsparticles/preset-links";
 
 export default function StarsBackground2({...props}){
-  const particleInit = useCallback(async (engine) => {
-    await loadLinksPreset(engine)
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadLinksPreset(engine)
+    })
   }, []);
 
-  return <Particles init={particleInit} options={{
+  return <Particles options={{
     fpsLimit: 20,
     pauseOnBlur: true,
     detectRetina: false,
