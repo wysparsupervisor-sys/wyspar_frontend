@@ -37,17 +37,21 @@ export default function Preview(){
     }, []);
 
     return (
-        <div className="flex h-[100dvh] max-h-[100dvh] flex-col ites-center justify-center">
-            {post_info ? <Comments info={post_info}/>:<StarsBackground2/>}
-            <div className="h-full flex flex-col items-center justify-center gap-3">
-                {failed && <>
-                    Whisper didn't load..
-                    <RefreshCcw onClick={GetWhisper} size={40}/>
-                </>}
-                {notExists && <>Whisper not available</>}
-                {(notExists || failed) && <Link className="w-3xs" href="/explore"><Button>Go to feed</Button></Link>}
-                {hasExpired && <ExpiryWarning/>}
-            </div>
-        </div>
+        <html>
+            <body>
+                <div className="flex h-[100dvh] max-h-[100dvh] flex-col ites-center justify-center">
+                    {post_info ? <Comments info={post_info}/>:<StarsBackground2/>}
+                    <div className="h-full flex flex-col items-center justify-center gap-3">
+                        {failed && <>
+                            Whisper didn't load..
+                            <RefreshCcw onClick={GetWhisper} size={40}/>
+                        </>}
+                        {notExists && <>Whisper not available</>}
+                        {(notExists || failed) && <Link className="w-3xs" href="/explore"><Button>Go to feed</Button></Link>}
+                        {hasExpired && <ExpiryWarning/>}
+                    </div>
+                </div>
+            </body>
+        </html>
     );
 };

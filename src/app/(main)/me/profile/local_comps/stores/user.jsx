@@ -6,11 +6,14 @@ import { create } from "zustand";
 export const useUserStore = create((set) => ({
     profile: null,
     setProfile: (fn) => set(fn),
-    
+    showing: null,
+    setShowing: (val) => set({ showing: val }), 
     postCategory: "all",
     updatePostCategory: (cat) => set({ postCategory: cat }),
     posts: {},
     hasUsedCache: false,
+    connects: [],
+    similar_connects: {},
     setHasUsedCache: (bol) => set({ hasUsedCache: bol }),
     addNewPosts: (newPosts) => set((state) => {
         const updated = { ...state.posts, [state.postCategory]: [ ...newPosts, ...(state.posts[state.postCategory] || []) ] };
@@ -21,6 +24,19 @@ export const useUserStore = create((set) => ({
         const updated = { ...state.posts, [state.postCategory]: [...(state.posts[state.postCategory] || []), ...newPosts] };
         SaveToSessionStorage("user-posts", updated, 1000 * 60 * 7); //practically just stay 7min
         return { posts: updated }
+    }),
+    setConnects: (connects) => set((state) => { 
+        SaveToSessionStorage("user-connects", connects, 1000 * 60 * 10);
+        return { connects: connects };
+    }),
+    addNewConnect: (newConnect) => set((state) => {
+        const updated = [...newConnect, ...state.connects];
+        SaveToSessionStorage("user-connects", updated, 1000 * 60 * 10);
+        return { connects: updated };
+    }),
+    addNewSimilarConnect: (id, array) => set((state) => {
+        const updated = Object.fromEntries(Object.entries({ [id]: array, ...state.similar_connects }).slice(0, 15));
+        return { similar_connects: updated };
     }),
     updateVoteCounter: (new_vote, post_id) => set(produce((state) => {
         const post = state.posts[state.postCategory].find((p) => p.post_id === post_id);

@@ -1,5 +1,5 @@
 import DropDownSmall from "@/app/components/inputs/dropdown/small";
-import { MapPin, RefreshCcw, X } from "lucide-react";
+import { ArrowLeft, MapPin, RefreshCcw, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { usePostContext } from "../context";
 import { produce } from "immer";
@@ -8,7 +8,7 @@ import { ClipLoader } from "react-spinners";
 import { POST_CATEGORIES, POST_CATEGORIES_ICONS } from "@/app/lib/data/post-categories";
 
 
-export default function PostHeader({pageIsOpen}){
+export default function PostHeader({setAction}){
     const { data, setData } = usePostContext();
     const [geoRes, setGeoRes] = useState(null);
     const [selectedCart, setSelectedCart] = useState(data.form.category || null);
@@ -34,7 +34,7 @@ export default function PostHeader({pageIsOpen}){
 
     return(
         <div className="flex flex-row items-center z-1 gap-1 h-13 p-2 text-sm">
-            <X onClick={() => pageIsOpen(false)} className="flex-shrink-0" size={30} strokeWidth={1.6}/>
+            <ArrowLeft onClick={() => setAction("select")} className="flex-shrink-0" size={30} strokeWidth={1.6}/>
             <div className="flex flex-shrink-0 flex-row items-center gap-1">
                 <MapPin color="orangered"/>
                 <p className={`bg-black flex flex-row items-center gap-2 p-1 border-2 ${geoRes === "on-campus" && "border-[greenyellow]"} ${geoRes === "near-campus" && "border-[orangered]"} ${geoRes === "off-campus" && "border-[red]"} ${((geoRes === "unreliable") || (geoRes === "no permission") || !geoRes) && "border-gray-500"} rounded-full pl-3 pr-3`}>{geoRes ? <>{((geoRes == "unreliable") || (geoRes == "no permission")) ? <><RefreshCcw onClick={GetLocationData} color="white" size={15}/>{geoRes}</>:geoRes}</>:<><ClipLoader color="white" size={15}/>loading...</>}</p>

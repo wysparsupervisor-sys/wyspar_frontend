@@ -1,9 +1,9 @@
 "use client";
-import StarsBackground from "../../components/animated_backgrounds/links";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import { GridLoader } from "react-spinners";
 import School from "./local_comps/school";
+import StarsBackground2 from "@/app/components/animated_backgrounds/stars2";
 const AnonymousName = dynamic(() => import("./local_comps/anonymous_name"));
 const Gender = dynamic(() => import("./local_comps/gender"), { loading: () => <LoadingAnimation/> });
 const Avatar = dynamic(() => import("./local_comps/avatar"), { loading: () => <LoadingAnimation/> });
@@ -33,7 +33,7 @@ export default function SignUp() {
         
     return (
         <div className="h-full flex flex-col items-center justify-center gap-8">
-            <StarsBackground/>
+            <StarsBackground2/>
             <div className="w-2xs flex flex-col bg-black border border-gray-900 items-center rounded-xl p-6 pt-10 pb-8 gap-5">
                 {currentSection===0 && <School context={{formInfo, setFormInfo}}/>}
                 {currentSection===1 && <AnonymousName context={{formInfo, setFormInfo}}/>}

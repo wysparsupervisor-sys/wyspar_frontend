@@ -1,6 +1,6 @@
 "use client";
 import { APP_NAME } from "@/app/lib/data/app-name";
-import { Bell, Dot, Download, Telescope, UserRoundPlus, X } from "lucide-react";
+import { Bell, Dot, Download, Search, UserRoundPlus, X } from "lucide-react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ClickEffect from "../effects/click-effect";
@@ -122,12 +122,12 @@ export default function Header({className , ...props}){
     return (
         <div className={`fixed h-[55px] top-0 w-full bg-black flex ${pathname !== "/explore" && "border-b border-gray-900"} flex-row items-center justify-between pl-2 pr-2 left-0 ${className}`} {...props}>
             <div className="flex flex-row items-center gap-1">
-                <Image src="/icon-512.png" height={47} width={47} alt="logo" className="rounded-full"/><b className="text-lg">{APP_NAME}</b>
+                <Image src="/icon-512.png" height={47} width={47} alt="logo" className="rounded-full"/><b className="text-lg">{APP_NAME}<span className="text-sm">.com</span></b>
             </div>
             <div className="pr-1 flex flex-row items-center gap-3">
                 {showInstallBtn && <b onClick={HandleInstall} className="flex flex-row items-center gap-2 text-sm border-2 pl-4 pr-4 p-0.5 rounded-full bg-[greenyellow]/60">Install <Download strokeWidth={3} size={15}/></b>}
                 {pathname === "/me/profile" && <UserRoundPlus onClick={shareWyspar}/>}
-                {pathname === "/explore" && <ClickEffect><Link href="/search"><Telescope strokeWidth={3}/></Link></ClickEffect>}
+                {pathname === "/explore" && <ClickEffect><Link href="/search"><Search/></Link></ClickEffect>}
                 {registering ? <ClipLoader color="white" size={20}/>:<div className="relative">
                     <Bell onClick={SubscribeToNotices}/>
                     {isRecievingPush ? <Dot className="top-[-21px] right-[-17px] absolute pointer-events-none" color="greenyellow" size={50}/>:<X className="top-[-4px] right-[-1px] absolute pointer-events-none" color="red" size={15} strokeWidth={3}/>}

@@ -13,7 +13,11 @@ export default function LogOut(){
     const LogOut = async () => {
         setLoading(true);
         const res = await Request("/app/user/me/logout", "GET");
-        if (res.ok) router.push("/login");
+        if (res.ok) {
+            localStorage.clear();
+            sessionStorage.clear();
+            router.push("/login");
+        };
     };
 
     return (

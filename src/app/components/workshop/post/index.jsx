@@ -1,6 +1,5 @@
 "use client";
-import StarsBackground from "../../animated_backgrounds/stars";
-import { Calendar1, Check, HatGlasses, ImageUp, RefreshCcw, Send, X } from "lucide-react";
+import { Check, HatGlasses, ImageUp, RefreshCcw, Send, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import PostHeader from "./sections/header";
 import PostFooter from "./sections/footer";
@@ -14,11 +13,12 @@ import { BarLoader, SyncLoader } from "react-spinners";
 import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
 import ExpiryWarning from "../../micellanious/expired-warning";
 import { useRouter, useSearchParams } from "next/navigation";
+import StarsBackground from "../../animated_backgrounds/stars";
 
 
 
 
-export default function MakePost({pageIsOPen}){
+export default function MakePost({setAction}){
     const router = useRouter();
     const searchParams = useSearchParams();
     const addNewPosts = useUserStore((state) => state.addNewPosts);
@@ -111,7 +111,7 @@ export default function MakePost({pageIsOPen}){
         setProfile(produce(draft => { 
             if (draft.profile) draft.profile.stats.posts += 1;
         }));
-        setTimeout(() => pageIsOPen(false), 2000);
+        setTimeout(() => setAction("out"), 2000);
     };
 
     return (
@@ -119,7 +119,7 @@ export default function MakePost({pageIsOPen}){
             <div className="absolute w-full h-full max-h-[100dvh]">
                 <div className="flex flex-col relative w-full h-full bg-black z-2">
                     <StarsBackground/>
-                    <PostHeader pageIsOpen={pageIsOPen}/>
+                    <PostHeader setAction={setAction}/>
                     <div className="flex-grow-1 flex flex-col overflow-y-scroll">
                         {data.form.type == "article" && <ArticlePost/>}
                         {data.form.type == "statement" && <StatementPost/>}
@@ -151,7 +151,7 @@ export default function MakePost({pageIsOPen}){
                         </>}
                         {postingState == "notsub" && <>
                             <X className="absolute top-5 left-5" size={30} onClick={() => setPostingState(null)}/>
-                            <ExpiryWarning/>
+                            <ExpiryWarning/> 
                         </>}
                     </div>
                 </div>}

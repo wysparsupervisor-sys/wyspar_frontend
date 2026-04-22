@@ -1,6 +1,6 @@
 "use client";
 import { useAnimation, motion } from "framer-motion";
-import { Bell, LayoutDashboard, Lightbulb, MessageCircle, MessageCircleMore, MessagesSquare, Settings, Sparkles, Telescope, UserRound } from "lucide-react";
+import { MessagesSquare, Search, Settings, Sparkles, Telescope, UserRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -28,7 +28,7 @@ function FooterElement({text="", Icon, id="", route="", activeId, setActiveId}){
         <motion.div className="w-[19%]" onClick={() => setActiveId(id)} initial={{borderBottom: "2px"}} animate={controls2}>
             <motion.div className="flex flex-col items-center gap-1 p-0.5 rounded-2xl" initial={{y:0, border: "1px solid rgba(10,10,40,0)", background: "none"}} animate={controls1}>
                 <Link href={route} className="flex flex-col items-center">
-                    <Icon color="#ffffffff"/>
+                    <Icon strokeWidth={1.6} color="#ffffffff"/>
                     <b className="font-medium text-xs">{text}</b>
                 </Link>
             </motion.div>
@@ -54,7 +54,7 @@ export default function Footer({className}){
     return (
         <div className={`fixed h-[50px] w-full bottom-0 pl-3 pr-3 bg-black flex flex-row items-center justify-between border-t-2 border-gray-900 ${className}`}>
             <FooterElement route="/explore" Icon={Sparkles} text="Explore" id="a" activeId={activeId} setActiveId={setActiveId}/>
-            <FooterElement route="/search" Icon={Telescope} text="Find" id="c" activeId={activeId} setActiveId={setActiveId}/>
+            <FooterElement route="/search" Icon={Search} text="Search" id="c" activeId={activeId} setActiveId={setActiveId}/>
             <FooterElement route="/me/profile" Icon={UserRound} text="Profile" id="b" activeId={activeId} setActiveId={setActiveId}/>
             <FooterElement route="/chat" Icon={MessagesSquare} text="Chat" id="f" activeId={activeId} setActiveId={setActiveId}/>
             <FooterElement route="/manage" Icon={Settings} text="Manage" id="e" activeId={activeId} setActiveId={setActiveId}/>

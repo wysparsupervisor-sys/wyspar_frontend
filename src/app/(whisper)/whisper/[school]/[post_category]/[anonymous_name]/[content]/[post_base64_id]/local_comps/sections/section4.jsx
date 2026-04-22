@@ -1,4 +1,4 @@
-import { FlagTriangleLeft, FlagTriangleRight, Ghost, Heart } from "lucide-react";
+import { Heart, MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react";
 import { updateInteraction } from "@/app/services/interaction";
 import ClickEffect from "@/app/components/effects/click-effect";
 import { useState } from "react";

@@ -87,6 +87,12 @@ export default function Search(){
                     <b onClick={() => setSearchType("wysparer")} className={`p-1 bg-[#000030] rounded-xl pl-4 pr-4 flex flex-row items-center gap-2 transition-all duration-300 border-2 ${loading && "pointer-events-none"} ${searchType === "wysparer" ? "border-white":"border-transparent"}`}><UserRoundSearch color="cyan"/>wysparer</b>
                     <b onClick={() => setSearchType("whisper")} className={`p-1 bg-[#000030] rounded-xl pl-4 pr-4 flex flex-row items-center gap-2 transition-all duration-300 border-2 ${loading && "pointer-events-none"} ${searchType === "whisper"? "border-white":"border-transparent"}`}><ScanSearch color="red"/>whisper</b>
                 </div>
+                <div className="h-full w-full p-5 pt-7">
+                    <div className="text-gray-300 p-2 text-center rounded-lg text-sm">
+                        {searchType === "wysparer" && "Search for a user by typing their name. Click the other button to search for a post."}
+                        {searchType === "whisper" && "Search for a post by typing related words or hashtag. Click the other button to search for people."}
+                    </div>
+                </div>
             </div>}
 
             {pageState === "atResult" && <div className="flex flex-col h-full">

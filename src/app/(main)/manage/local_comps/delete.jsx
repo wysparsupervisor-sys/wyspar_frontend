@@ -25,7 +25,11 @@ export default function DeleteAccount(){
     const DeleteFinal = async () => {
         setLoading(true);
         const res = await Request("/app/user/me/deleteaccount", "GET");
-        if (res.ok) router.push("/login");
+        if (res.ok) {
+            localStorage.clear();
+            sessionStorage.clear();
+            router.push("/login");
+        }
     };
 
     return (

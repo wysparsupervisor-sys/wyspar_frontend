@@ -2,13 +2,14 @@
 import { Lock, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import StarsBackground from "../../components/animated_backgrounds/links";
+
 import { APP_NAME } from "../../lib/data/app-name";
 import { useRef, useState } from "react";
 import { z } from "zod";
 import Request from "../../lib/utils/request";
 import { ClipLoader } from "react-spinners";
 import { redirect } from "next/navigation";
+import StarsBackground2 from "@/app/components/animated_backgrounds/stars2";
 
 
 export default function Login() {
@@ -34,7 +35,7 @@ export default function Login() {
 
     return (
         <div className="h-full flex flex-col items-center justify-center gap-8">
-            <StarsBackground onClick={() => alert("j")}/>
+            <StarsBackground2/>
             <h1 className="text-3xl">Welcome to {APP_NAME}</h1>
             <div className="w-2xs flex bg-black flex-col items-center gap-10 rounded-xl p-6 pt-5 pb-8 border-2 border-gray-white">
                 <p className="text-2xl flex -mb-6 flex-row items-center justify-center gap-3"><Image src="/logo.png" alt="logo" width={80} height={80} className="rounded-full"/>Login</p>
