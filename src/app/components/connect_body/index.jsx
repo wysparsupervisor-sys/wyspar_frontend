@@ -28,13 +28,11 @@ export default function ConnectBody({info={location: "Address", created_at:"", p
     const encoded = encodeURIComponent(message);
 
     async function ShareConnect(){
-        const details = `${UUIDToBase62(info.connect_id)}?(!)?${info.purpose}?(!)?${info.phone}?(!)?${info.location}${info.extra.slice(0, 30)}`;
+        const details = `${UUIDToBase62(info.connect_id)}?(!)?${info.purpose}?(!)?${info.phone}?(!)?${info.location}?(!)?${info.extra.slice(0, 30)}`;
         const url = FRONTEND_URL + "/connect/" + encodeURIComponent(details);
 
         await navigator.share({
             url: url,
-            title: "I'm looking for someone " + info.purpose,
-            text: "Connect with your campus community",
         });
     };
 
