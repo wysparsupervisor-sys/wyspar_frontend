@@ -7,7 +7,7 @@ export default async function Whisper({params}){
     const uaString = headersList.get('user-agent') || '';
     const isBot = /(bot|crawler|spider|slurp|facebookexternalhit|twitterbot|whatsapp)/i.test(uaString);
 
-    if(isBot) return <Preview/>;
+    if(!isBot) return <Preview/>;
 
     const { details } = await params;
     const details_array = decodeURIComponent(details).split("?(!)?");
@@ -19,5 +19,5 @@ export default async function Whisper({params}){
 
     console.log({purpose, phone, location, extra})
 
-    if(!isBot) return <OgMeta og_obj={{purpose, phone, location, extra}}/>
+    if(isBot) return <OgMeta og_obj={{purpose, phone, location, extra}}/>
 };
