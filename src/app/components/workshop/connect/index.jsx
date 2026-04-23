@@ -7,7 +7,6 @@ import { BarLoader, SyncLoader } from "react-spinners";
 import ExpiryWarning from "../../micellanious/expired-warning";
 import Request from "@/app/lib/utils/request";
 import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
-import StarsBackground2 from "../../animated_backgrounds/stars2";
 import Description from "./local_comps/description";
 
 const schema = z.object({
@@ -68,7 +67,6 @@ export default function IAmLookingForSomeone({setAction}){
 
     return (
         <div className="absolute top-0 left-0 h-full max-h-[100dvh] w-full bg-black z-2">
-            <StarsBackground2/>
             <div className="flex flex-row h-13 items-center justify-between pl-3 pr-3">
                 <div className="flex items-center gap-2">
                     <ArrowLeft size={25} onClick={() => setAction("select")}/>
