@@ -47,9 +47,8 @@ export default function ConnectBody({info={location: "Address", created_at:"", p
         <>
             <div className="flex flex-col relative gap-1 ml-10 mr-10 ">
                 <div className="relative pb-2 bg-[rgb(3,6,9)] border-1 border-gray-800/50 p-5 rounded-3xl flex flex-col items-center gap-2 overflow-hidden">
-                    <div className="w-full top-0 h-30 bg-white/5 absolute overflow-hidden">
+                    <div className="w-full top-0 h-30 bg-[rgb(6,12,18)] absolute overflow-hidden">
                         <div className="absolute bottom-0.5 right-1 text-gray-300 z-1"><Share2 onClick={ShareConnect} strokeWidth={1.5}/></div>
-                        <AnimatedBackground fps={20} adaptivePerformance={true} enablePerformanceMonitoring={true} style={{height: "", position:"absolute", top: 0, left: 0, zIndex:0}} animationName={info.profile_background || profile.details.profile_background} interactivity={true}/>
                     </div>
                     <div className="flex flex-row relative w-full justify-between items-center text-xs">
                         <span className="flex flex-row items-center gap-1 bg-[orangered] p-0.5 pl-2 pr-2 rounded-full"><MapPin size={17}/>{info.location}</span>

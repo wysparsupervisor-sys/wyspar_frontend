@@ -5,7 +5,6 @@ import { Navigation, EffectCards } from "swiper/modules";
 import "swiper/css/effect-cards";
 import "swiper/css";
 import "swiper/css/navigation";
-import LinksBackground2 from "@/app/components/animated_backgrounds/links2";
 import ConnectBody from "@/app/components/connect_body";
 import { useEffect, useState } from "react";
 import Request from "@/app/lib/utils/request";
@@ -35,7 +34,6 @@ export default function Section5(){
 
     return (
         <div className="w-full h-full">
-            <LinksBackground2/>
             <div className="relative flex flex-row justify-center pl-3 pr-3 h-12 items-center z-1">
                 <ArrowLeft onClick={() => setShowing(null)} className="absolute left-2" size={30}/>
                 <span>Your connects</span>

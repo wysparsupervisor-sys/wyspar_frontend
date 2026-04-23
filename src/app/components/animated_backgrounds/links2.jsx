@@ -1,14 +1,16 @@
 "use client";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { useEffect, useCallback } from "react";
+import { useEffect } from "react";
 import { loadLinksPreset } from "@tsparticles/preset-links";
 
 export default function LinksBackground2({...props}){
-  const particleInit = useCallback(async (engine) => {
-    await loadLinksPreset(engine)
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadLinksPreset(engine)
+    })
   }, []);
 
-  return <Particles init={particleInit} options={{
+  return <Particles options={{
     fpsLimit: 20,
     pauseOnBlur: true,
     detectRetina: false,
