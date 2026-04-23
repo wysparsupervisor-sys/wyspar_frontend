@@ -4,6 +4,7 @@ import { z } from "zod";
 import Request from "@/app/lib/utils/request";
 import { useState } from "react";
 import { ClipLoader } from "react-spinners";
+import { SaveToSessionStorage } from "@/app/lib/utils/session-storage";
 
 
 export default function Email({context}){
@@ -23,7 +24,11 @@ export default function Email({context}){
         setLoading(true);
         const res = await Request("/auth/signup?payload=personal-data", "POST", formInfo);
         setResponse(res.msg); setLoading(false);
-        if(res.ok) return setCurrentSection(prev => prev+1);
+        if(res.ok) {
+            return setCurrentSection(prev => {
+            SaveToSessionStorage("signup-state", prev + 1, 1000 * 60 * 10) 
+            return (prev+1)})
+        }
     };
 
     return (

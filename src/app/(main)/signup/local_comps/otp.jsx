@@ -1,4 +1,5 @@
 import Request from "@/app/lib/utils/request";
+import { SaveToSessionStorage } from "@/app/lib/utils/session-storage";
 import { KeyRound } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { useState } from "react";
@@ -18,7 +19,9 @@ export default function OTP({context}) {
         
         setLoading(true);
         const data = await Request("/auth/signup?payload=otp", "POST", { otp: otp }); setLoading(false);
-        if (data.ok) return setCurrentSection(prev => prev+1);
+        if (data.ok) return setCurrentSection(prev => {
+            SaveToSessionStorage("signup-state", prev + 1, 1000 * 60 * 10) 
+            return (prev+1)})
         setResponse(data.msg);
     };
 

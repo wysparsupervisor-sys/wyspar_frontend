@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { GridLoader } from "react-spinners";
 import School from "./local_comps/school";
 import StarsBackground2 from "@/app/components/animated_backgrounds/stars2";
+import { GetFromSessionStorage, SaveToSessionStorage } from "@/app/lib/utils/session-storage";
 const AnonymousName = dynamic(() => import("./local_comps/anonymous_name"));
 const Gender = dynamic(() => import("./local_comps/gender"), { loading: () => <LoadingAnimation/> });
 const Avatar = dynamic(() => import("./local_comps/avatar"), { loading: () => <LoadingAnimation/> });
@@ -18,7 +19,12 @@ function LoadingAnimation() {
 
 
 export default function SignUp() {
-    const [currentSection, setCurrentSection] = useState(0);
+    const [currentSection, setCurrentSection] = useState();
+
+    useEffect(() => {
+        setCurrentSection(GetFromSessionStorage("signup-state") || 0);
+    }, []);
+
     const [formInfo, setFormInfo] = useState({
         anonymous_name: "",
         gender: null,
@@ -42,11 +48,17 @@ export default function SignUp() {
                 {currentSection===4 && <Email context={{formInfo, setFormInfo, setCurrentSection}}/>}
                 {currentSection===5 && <OTP context={{formInfo, setCurrentSection}}/>}
                 {currentSection===6 && <Password/>}
-                {currentSection < 4 && <button className="bg-[#5a0019ff] p-2 w-full rounded-sm" onClick={() => setCurrentSection(prev => prev+1)}>Next</button>}
+                {currentSection < 4 && <button className="bg-[#5a0019ff] p-2 w-full rounded-sm" onClick={() => { setCurrentSection(prev => {
+                    SaveToSessionStorage("signup-state", prev + 1, 1000 * 60 * 10) 
+                    return (prev+1);
+                })}}>Next</button>}
             </div>
             {(currentSection < 5 && currentSection !== 0) && 
             <div className="absolute bottom-0 right-0 left-0 bottom-0">
-                <button onClick={() => setCurrentSection(prev => prev-1)} className="border-2 ml-5 mb-5 p-2 pl-8 bg-black pr-8 rounded-sm border border-[#0a6464ff]">Previous</button>
+                <button onClick={() => { setCurrentSection(prev => {
+                    SaveToSessionStorage("signup-state", prev - 1, 1000 * 60 * 10) 
+                    return (prev-1);
+                })}} className="border-2 ml-5 mb-5 p-2 pl-8 bg-black pr-8 rounded-sm border border-[#0a6464ff]">Previous</button>
             </div>}
         </div>
     );
