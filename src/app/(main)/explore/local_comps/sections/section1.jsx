@@ -31,7 +31,7 @@ export default function Section1(){
             const res = await Request("/app/connect_feed?action=personalized", "GET");
             if (res.ok) {
                 setConnects(res.body || []);
-                SaveToLocalStorage('personalized_connect', res.body, 1000 * 60 * 1);
+                SaveToLocalStorage('personalized_connect', res.body, 1000 * 60 * 60 * 1);
             };
         };
         
