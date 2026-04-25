@@ -13,7 +13,7 @@ import { BarLoader, SyncLoader } from "react-spinners";
 import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
 import ExpiryWarning from "../../micellanious/expired-warning";
 import { useRouter, useSearchParams } from "next/navigation";
-import StarsBackground from "../../animated_backgrounds/stars";
+
 
 
 
@@ -118,7 +118,7 @@ export default function MakePost({setAction}){
         <PostContext.Provider value={{data, setData}}>
             <div className="absolute w-full h-full max-h-[100dvh]">
                 <div className="flex flex-col relative w-full h-full bg-black z-2">
-                    <StarsBackground/>
+                    
                     <PostHeader setAction={setAction}/>
                     <div className="flex-grow-1 flex flex-col overflow-y-scroll">
                         {data.form.type == "article" && <ArticlePost/>}
