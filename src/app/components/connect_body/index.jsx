@@ -17,13 +17,13 @@ export default function ConnectBody({info={location: "Address", created_at:"", p
 
     const message = `Hey! 👋 Saw your post on Wyspar.
     
-    You're looking for someone ${info.purpose}
+You're looking for someone ${info.purpose}
     
-    You're around ${info.location}, right? That works for me.
+You're around ${info.location}, right? That works for me.
     
-    Also noted: ${info.extra}
+Also noted: ${info.extra}
     
-    Let's link up! When are you free? 🔥`;
+Let's link up! When are you free? 🔥`;
 
     const encoded = encodeURIComponent(message);
 
