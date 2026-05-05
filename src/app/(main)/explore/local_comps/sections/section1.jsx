@@ -16,7 +16,7 @@ import Section3 from "./section3";
 
 export default function Section1(){
     const [connects, setConnects] = useState([]);
-    const [connectBlock, setConnectBlock] = useState(GetFromLocalStorage("connect-block") ? true:false);
+    const [connectBlock, setConnectBlock] = useState();
     const [isDiscoveringConnects, setIsDiscoveringConnects] = useState(false);
     const [loading, setLoading] = useState(true);
     const updatePostCategory = useFeedStore((state) => state.updatePostCategory);
@@ -40,6 +40,8 @@ export default function Section1(){
     };
 
     useEffect(() => {
+        const val = GetFromLocalStorage("connect-block") ? true:false;
+        setConnectBlock(val);
         LoadConnects();
     }, []);
 
