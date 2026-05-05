@@ -7,12 +7,12 @@ export function proxy(req) {
     //if ppathname is a post preview and it's a robot viewing just allow them
     const uaString = req.headers.get('user-agent') || '';
     const isBot = /(bot|crawler|spider|slurp|facebookexternalhit|twitterbot|whatsapp)/i.test(uaString);
-    if ((pathname.startsWith("/whisper") || pathname.startsWith("/connect")) && isBot) return NextResponse.next();
+    if ((pathname.startsWith("/whisper") || pathname.startsWith("/connect") || pathname.startsWith("/share")) && isBot) return NextResponse.next();
 
     const token = req.cookies.get("user_access_token");
     const ungatedPaths = ["/login", "/signup", "/welcome", "/recover"];
 
-    //redirect all root paths to welcome
+    //redirect all root paths to login
     if(pathname === "/") return NextResponse.redirect(new URL("/login", req.url));
 
     //prevents checking for token when user tries to visit routes that do not require token

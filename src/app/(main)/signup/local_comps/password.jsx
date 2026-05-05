@@ -21,6 +21,7 @@ export default function Password() {
         const res = await Request("/auth/signup?payload=password", "POST", { password: password }); setLoading(false);
         if (!res.ok) return setResponse(res.msg);
         sessionStorage.removeItem("signup-state");
+        localStorage.setItem("connect-block", "active");
         redirect("/explore");
     };
 

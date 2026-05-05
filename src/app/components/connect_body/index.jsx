@@ -51,7 +51,7 @@ Let's link up! When are you free? 🔥`;
                         <div className="absolute bottom-0.5 right-1 text-gray-300 z-1"><Share2 onClick={ShareConnect} strokeWidth={1.5}/></div>
                     </div>
                     <div className="flex flex-row relative w-full justify-between items-center text-xs">
-                        <span className="flex flex-row items-center gap-1 bg-[orangered] p-0.5 pl-2 pr-2 rounded-full"><MapPin size={17}/>{info.location}</span>
+                        <span className="flex flex-row items-center gap-1 bg-[orangered] p-0.5 pl-2 pr-2 rounded-full"><MapPin size={17}/>{info.location.slice(0,15)}</span>
                         <div className="flex items-center gap-1 text-gray-100"><Clock size={17}/>{TimeAgo(info.created_at || 0)}</div>
                     </div>
                     <div className="h-20 z-0 w-20 bg-red-900 rounded-full overflow-hidden"><Image alt="picture anonymous" src={String(info.gender) != "undefined" ? (info.gender == 0 ? "/male.png":"/female.png"):(profile.gender == 0 ? "/male.png":"/female.png")} height={100} width={100}/></div>
@@ -59,7 +59,7 @@ Let's link up! When are you free? 🔥`;
                         <b>I'm looking for someone</b>  {info.purpose}
                     </div>
                     <Link href={`https://wa.me/${info.phone}?text=${encoded}`} className="bg-[limegreen] pl-4 pr-4 rounded-full text-lg border-2 border-white/70">connect</Link>
-                    <div className="text-xs bg-[rgb(30,30,30)]/50 text-white/70 pl-3 pr-3 p-1 rounded-2xl">{info.extra}</div>
+                    <div className="text-xs bg-[rgb(30,30,30)]/50 text-white/70 pl-3 pr-3 p-1 rounded-2xl">{info.extra.slice(0, 100)}</div>
                     <div className="flex flex-col items-center gap-1">
                         
                         <div className="flex items-center gap-1 text-gray-300"><Gem size={20}/>Sees {String(info.gender) != "undefined" ? (info.gender == 0 ? "himself":"herself"):(profile.gender == 0 ? "himself":"herself")} as</div>

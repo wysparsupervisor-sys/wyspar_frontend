@@ -17,7 +17,5 @@ export default async function Whisper({params}){
     const location = details_array[3];
     const extra = details_array[4];
 
-    console.log({purpose, phone, location, extra})
-
     if(isBot) return <OgMeta og_obj={{purpose, phone, location, extra}}/>
 };

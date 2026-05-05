@@ -103,12 +103,12 @@ export default function IAmLookingForSomeone({setAction}){
                     <label className="text-sm text-gray-300">Where do you stay? <b>(optional)</b></label>
                     <div className="flex flex-row h-10 w-[70%] rounded-xl overflow-hidden">
                         <div className="h-10 w-12 flex-shrink-0 bg-[orangered] flex flex-row items-center justify-center"><MapPin strokeWidth={2.5}/></div>
-                        <input defaultValue={GetFromLocalStorage("phone-n-address")?.address} ref={locationRef} type="text" maxLength="30" className="pl-2 outline-none bg-[rgb(15,15,15)] w-full" placeholder="Hostel/lodge?"/>
+                        <input defaultValue={GetFromLocalStorage("phone-n-address")?.address} ref={locationRef} type="text" maxLength="15" className="pl-2 outline-none bg-[rgb(15,15,15)] w-full" placeholder="Hostel/lodge?"/>
                     </div>
                 </div>
                 <div className="mt-1">
                     <label className="text-sm text-gray-300">Extra details? <b>(optional)</b></label>
-                    <DynamicTextArea style={{height:"30px"}} ref={extraRef} rowLimit={2} maxLength="150"/>
+                    <DynamicTextArea style={{height:"30px"}} ref={extraRef} rowLimit={2} maxLength="100"/>
                 </div>
                 <Description/>
             </div>

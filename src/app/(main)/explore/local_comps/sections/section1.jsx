@@ -16,6 +16,7 @@ import Section3 from "./section3";
 
 export default function Section1(){
     const [connects, setConnects] = useState([]);
+    const [connectBlock, setConnectBlock] = useState(GetFromLocalStorage("connect-block") ? true:false);
     const [isDiscoveringConnects, setIsDiscoveringConnects] = useState(false);
     const [loading, setLoading] = useState(true);
     const updatePostCategory = useFeedStore((state) => state.updatePostCategory);
@@ -41,6 +42,20 @@ export default function Section1(){
     useEffect(() => {
         LoadConnects();
     }, []);
+
+    const InviteFriends = async () => {
+        try {
+            await navigator.share({
+                title: "Check out this app made for campus.",
+                text: "It's for finding people on campus that match your vibes and also a social media app for students specifically.",
+                url: "https://www.wyspar.com/share",
+            });
+            setConnectBlock(false);
+            localStorage.removeItem("connect-block");
+        } catch (error) {
+            console.log(error);
+        };
+    };
 
     return (
         <>
@@ -85,6 +100,10 @@ export default function Section1(){
                     </>}
                     {(!(connects.length > 0) && !loading) && <span className="text-xl text-gray-500 p-3">No connects available now</span>}
                 </Swiper>
+                {connectBlock && <div className="absolute top-0 left-0 bg-black/80 h-full w-full z-1 flex flex-col items-center justify-center p-5 gap-5">
+                    <p className="text-xl text-center text-gray-200">Invite 5 friends on WhatsApp to see all connects.</p> 
+                    <b onClick={InviteFriends} className="bg-[#000060] border-2 w-40 p-2 rounded-xl text-center">Invite Friends</b>        
+                </div>}
             </div>
         </>
     );
