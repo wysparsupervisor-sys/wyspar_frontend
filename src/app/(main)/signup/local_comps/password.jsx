@@ -1,3 +1,4 @@
+import { SaveToLocalStorage } from "@/app/lib/utils/local-storage";
 import Request from "@/app/lib/utils/request";
 import { Eye, EyeOff, Fingerprint, KeyIcon } from "lucide-react";
 import { redirect } from "next/navigation";
@@ -21,7 +22,7 @@ export default function Password() {
         const res = await Request("/auth/signup?payload=password", "POST", { password: password }); setLoading(false);
         if (!res.ok) return setResponse(res.msg);
         sessionStorage.removeItem("signup-state");
-        localStorage.setItem("connect-block", "active");
+        SaveToLocalStorage("connect-block", "active", 1000 * 60 * 60 * 24 * 365);
         redirect("/explore");
     };
 

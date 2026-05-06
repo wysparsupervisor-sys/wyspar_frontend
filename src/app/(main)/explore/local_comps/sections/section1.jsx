@@ -103,7 +103,7 @@ export default function Section1(){
                     {(!(connects.length > 0) && !loading) && <span className="text-xl text-gray-500 p-3">No connects available now</span>}
                 </Swiper>
                 {connectBlock && <div className="absolute top-0 left-0 bg-black/80 h-full w-full z-1 flex flex-col items-center justify-center p-5 gap-5">
-                    <p className="text-xl text-center text-gray-200">Invite 5 friends on WhatsApp to see all connects.</p> 
+                    <p className="text-xl text-center text-gray-100">Invite 5 friends on WhatsApp to see all connects.</p> 
                     <b onClick={InviteFriends} className="bg-[#000060] border-2 w-40 p-2 rounded-xl text-center">Invite Friends</b>        
                 </div>}
             </div>

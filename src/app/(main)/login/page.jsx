@@ -10,6 +10,7 @@ import Request from "../../lib/utils/request";
 import { ClipLoader } from "react-spinners";
 import { redirect } from "next/navigation";
 import StarsBackground2 from "@/app/components/animated_backgrounds/stars2";
+import { SaveToLocalStorage } from "@/app/lib/utils/local-storage";
 
 
 export default function Login() {
@@ -29,7 +30,8 @@ export default function Login() {
 
         setLoading(true); setResponse("");
         const res = await Request("/auth/login", "POST", { email: email, password: password });
-        setLoading(false); setResponse(res.msg); localStorage.setItem("connect-block", "active");
+        setLoading(false); setResponse(res.msg);
+        SaveToLocalStorage("connect-block", "active", 1000 * 60 * 60 * 24 * 365);
         if(res.ok) redirect("/explore");
     };
 
