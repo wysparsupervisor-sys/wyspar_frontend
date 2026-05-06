@@ -29,7 +29,7 @@ export default function Login() {
 
         setLoading(true); setResponse("");
         const res = await Request("/auth/login", "POST", { email: email, password: password });
-        setLoading(false); setResponse(res.msg);
+        setLoading(false); setResponse(res.msg); localStorage.setItem("connect-block", "active");
         if(res.ok) redirect("/explore");
     };
 
