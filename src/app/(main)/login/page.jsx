@@ -10,7 +10,6 @@ import Request from "../../lib/utils/request";
 import { ClipLoader } from "react-spinners";
 import { redirect } from "next/navigation";
 import StarsBackground2 from "@/app/components/animated_backgrounds/stars2";
-import { SaveToLocalStorage } from "@/app/lib/utils/local-storage";
 
 
 export default function Login() {
@@ -31,7 +30,6 @@ export default function Login() {
         setLoading(true); setResponse("");
         const res = await Request("/auth/login", "POST", { email: email, password: password });
         setLoading(false); setResponse(res.msg);
-        SaveToLocalStorage("connect-block", "active", 1000 * 60 * 60 * 24 * 365);
         if(res.ok) redirect("/explore");
     };
 
@@ -40,7 +38,7 @@ export default function Login() {
             <StarsBackground2/>
             <h1 className="text-3xl">Welcome to {APP_NAME}</h1>
             <div className="w-2xs flex bg-black flex-col items-center gap-10 rounded-xl p-6 pt-5 pb-8 border-2 border-gray-white">
-                <p className="text-2xl flex -mb-6 flex-row items-center justify-center gap-3"><Image src="/logo.png" alt="logo" width={80} height={80} className="rounded-full"/>Login</p>
+                <p className="text-2xl flex -mb-6 flex-row items-center justify-center gap-3"><Image src="/icon-512.png" alt="logo" width={80} height={80} className="rounded-full"/>Login</p>
                 <div className="flex flex-col gap-2">
                     {response && <p className="text-sm text-center text-[orangered]">{response}</p>}
                     <div className="w-full bg-[rgb(30,30,30)] rounded-sm p-2 flex flex-row items-center">
