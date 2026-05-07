@@ -8,7 +8,7 @@ export default function Manage(){
         <div>
             <div className="h-[55px]"></div>
             <div className="flex flex-col gap-3 p-2">
-                <Subscription/>
+                
                 <LogOut/>
                 <DeleteAccount/>
             </div>
