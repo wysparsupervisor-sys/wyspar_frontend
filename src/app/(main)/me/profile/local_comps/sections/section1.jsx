@@ -1,12 +1,14 @@
 import { Building, Camera, User2, X } from "lucide-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { createAvatar } from "@dicebear/core";
 import * as Collection from "@dicebear/collection";
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { GridLoader } from "react-spinners";
 import ProfileBackground from "@/app/(main)/me/profile/local_comps/miscellenious/profile-bg";
 import { useUserStore } from "../stores/user";
+import { MEDIA_GET_URL } from "../../../../../../../domain";
+import { GetFromLocalStorage } from "@/app/lib/utils/local-storage";
+import { createAvatar } from "@dicebear/core";
 const AvatarEdit = dynamic(() => import("../editables/avatar"), { loading: () => <GridLoader color="white" size={40}/>, ssr: false });
 
 
@@ -18,7 +20,12 @@ export default function Section1(){
 
     useEffect(() => {
         const avatar = createAvatar(Collection[profile.details.avatar.style], { seed: profile.details.avatar.seed });
-        setDataUri(avatar.toDataUri());
+        
+        if (profile.details.profile_photo) {
+            setDataUri(`${MEDIA_GET_URL}/${profile.details.profile_photo}_240.webp?v=${GetFromLocalStorage("cache_query_hack")}`)
+        } else {
+            setDataUri(avatar.toDataUri());    
+        };        
     }, [profile]);
 
     return (

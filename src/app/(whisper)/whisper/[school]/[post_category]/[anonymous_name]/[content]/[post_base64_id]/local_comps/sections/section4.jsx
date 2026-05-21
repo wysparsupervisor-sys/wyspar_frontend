@@ -27,21 +27,21 @@ export default function Section4({info}){
    
 
     return (
-        <div className="flex flex-row items-center justify-between bg-[rgba(0,0,39,1)]/80 border border-gray-900/70 pt-1 pb-1 pl-3 pr-3 text-sm text-gray-400 rounded-lg">
+        <div className="flex flex-row items-center justify-between bg-[rgba(5,5,30,1)]/80 border-2 border-red-900/15 pt-1.5 pb-1.5 pl-5 pr-5 text-sm text-gray-400 rounded-2xl">
             <div className={baseStyle}>
-                <ClickEffect><ThumbsUp onClick={() => {setVotedFunc(1)}} strokeWidth={1.5} size={17} color={vote_value === 1 ? "greenyellow" : "white"} fill={vote_value === 1 ? "greenyellow":""}/></ClickEffect>
+                <ClickEffect><ThumbsUp onClick={() => {setVotedFunc(1)}} strokeWidth={2} size={20} color={vote_value === 1 ? "greenyellow" : "white"}/></ClickEffect>
                 {millify(total_upvote, {precision: 1})}
             </div>
             <div className={baseStyle}>
-                <ClickEffect><ThumbsDown onClick={() => {setVotedFunc(-1)}} strokeWidth={1.5} size={17} color={vote_value === -1 ? "red" : "white"} fill={vote_value === -1 ? "red":""}/></ClickEffect>
+                <ClickEffect><ThumbsDown onClick={() => {setVotedFunc(-1)}} strokeWidth={2} size={20} color={vote_value === -1 ? "red" : "white"}/></ClickEffect>
                 {millify(total_downvote, {precision: 1})}
             </div>
             <div className={baseStyle}>
-                <ClickEffect><Heart onClick={() => setLovedFunc()} strokeWidth={1.5} size={17} color={love_value === 1 ? "cyan" : "white"} fill={love_value === 1 ? "cyan":""}/></ClickEffect>
+                <ClickEffect><Heart onClick={() => setLovedFunc()} strokeWidth={2} size={20} color={love_value === 1 ? "white" : "white"} fill={love_value === 1 ? "white":""}/></ClickEffect>
                 {millify(total_love, {precision: 1})}
             </div>
             <div className={baseStyle}>
-                <ClickEffect><MessageCircle onClick={() => setPostStates(c => produce(c, draft => { draft.isCommenting = true }))} strokeWidth={1.5} size={17} color="white"/></ClickEffect>
+                <ClickEffect><MessageCircle onClick={() => setPostStates(c => produce(c, draft => { draft.isCommenting = true }))} strokeWidth={1.5} size={20} color="white"/></ClickEffect>
                 {millify(total_comment, {precision: 1})}
             </div>
         </div>

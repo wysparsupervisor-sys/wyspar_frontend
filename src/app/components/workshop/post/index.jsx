@@ -1,5 +1,5 @@
 "use client";
-import { Check, HatGlasses, ImageUp, RefreshCcw, Send, X } from "lucide-react";
+import { Check, HatGlasses, ImageUp, MessageCirclePlus, RefreshCcw, Send, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import PostHeader from "./sections/header";
 import PostFooter from "./sections/footer";
@@ -13,6 +13,7 @@ import { BarLoader, SyncLoader } from "react-spinners";
 import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
 import ExpiryWarning from "../../micellanious/expired-warning";
 import { useRouter, useSearchParams } from "next/navigation";
+import StarsBackground2 from "../../animated_backgrounds/stars2";
 
 
 
@@ -31,7 +32,6 @@ export default function MakePost({setAction}){
         const url = new URL(window.location.href);
         url.searchParams.delete("type");
         url.searchParams.delete("content");
-        url.searchParams.delete("category");
         url.searchParams.delete("isposting");
 
         router.replace(url.toString(), { scroll:false });
@@ -43,7 +43,6 @@ export default function MakePost({setAction}){
             type: searchParams.get("type") || "article",
             text: decodeURIComponent(searchParams.get("content") || "") || "",
             style: "",
-            category: searchParams.get("category") || "",
             images: [],
             coords: null,
         },
@@ -57,14 +56,13 @@ export default function MakePost({setAction}){
     const ResetState = () => {
         //reset evrything except coords cause they still remain same upon changing state
         setData(current => produce(current, draft => {
-            draft.form.type = "article"; draft.form.text = "", draft.form.style = ""; draft.form.category = data.form.category; draft.form.images = [], draft.temp = { images_object_url: [], location_status: data.temp.location_status }
+            draft.form.type = "article"; draft.form.text = "", draft.form.style = ""; draft.form.images = [], draft.temp = { images_object_url: [], location_status: data.temp.location_status }
         }));
     };
 
 
     const SendPost = async () => {
-        if(!data.form.category) return alert("Add a posting category 💎 At the top right of your screen! 🥤")
-        const body = { type: data.form.type, text: data.form.text, category: data.form.category, coords: data.form.coords, style: data.form.style };
+        const body = { type: data.form.type, text: data.form.text, coords: data.form.coords, style: data.form.style };
         
         //set posting true to block further interaction with ui and display certain animations
         setPostingState("sending");
@@ -118,7 +116,7 @@ export default function MakePost({setAction}){
         <PostContext.Provider value={{data, setData}}>
             <div className="absolute w-full h-full max-h-[100dvh]">
                 <div className="flex flex-col relative w-full h-full bg-black z-2">
-                    
+                    <StarsBackground2/>
                     <PostHeader setAction={setAction}/>
                     <div className="flex-grow-1 flex flex-col overflow-y-scroll">
                         {data.form.type == "article" && <ArticlePost/>}
@@ -130,7 +128,7 @@ export default function MakePost({setAction}){
                 {postingState && <div className="absolute flex flex-col items-center justify-center top-0 left-0 bg-black/90 h-full w-full z-9">
                     <div className="flex flex-col gap-4 items-center">
                         {postingState == "sending" && <>
-                            <HatGlasses size={80}/>
+                            <MessageCirclePlus size={80}/>
                             <p className="text-lg text-gray-200">Posting your Whisper...</p>
                             <SyncLoader color="white"/>
                         </>}

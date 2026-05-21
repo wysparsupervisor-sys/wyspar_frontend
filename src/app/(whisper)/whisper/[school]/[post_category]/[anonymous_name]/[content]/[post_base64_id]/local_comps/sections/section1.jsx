@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import * as Collection from "@dicebear/collection";
 import Menu from "../miscellanious/menu";
 import Link from "next/link";
-import { FRONTEND_URL } from "../../../../../../../../../../../domain";
+import { FRONTEND_URL, MEDIA_GET_URL } from "../../../../../../../../../../../domain";
 
 
 export default function Section1({info, store}){
@@ -16,7 +16,7 @@ export default function Section1({info, store}){
 
     useEffect(() => {
         const ava = createAvatar(Collection[avatar.style], { seed: avatar.seed });
-        setDataUri(ava.toDataUri());
+        setDataUri(info.profile_photo ? `${MEDIA_GET_URL}/${info.profile_photo}_240.webp` : ava.toDataUri());
     }, []);
     
     return (

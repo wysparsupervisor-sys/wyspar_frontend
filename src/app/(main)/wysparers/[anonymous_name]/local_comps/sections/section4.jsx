@@ -7,7 +7,6 @@ import { PropagateLoader } from "react-spinners";
 import { PackageOpen } from "lucide-react";
 import Section1 from "./section1";
 import Section2 from "./section2";
-import Section3 from "./section3";
 import { Virtuoso } from "react-virtuoso";
 import { useScrollStore } from "@/app/(main)/store";
 
@@ -17,7 +16,6 @@ const MemoHeader = React.memo(() => <>
         <Section1/>
         <Section2/>
     </div>
-    <Section3/>
 </>);
 
 
@@ -69,7 +67,7 @@ export default function Section4({anonymous_name}){
     };
 
     return (
-        <div className="flex flex-col h-full">
+        <div className="h-full overflow-hidden">
             <Virtuoso increaseViewportBy={{top: 200, bottom: 200}} scrollerRef={(el) => virtuosoRef.current = el} endReached={() => fetchPosts()} data={posts} itemContent={(i, post) => <PostBody store={useViewerStore} key={post.post_id} info={post}/>}
                 components={{
                     Footer: () => <div className="flex flex-col text-gray-300 items-center justify-center p-5">

@@ -1,7 +1,7 @@
 import Request from "@/app/lib/utils/request";
 import { createAvatar } from "@dicebear/core";
 import * as Collection from "@dicebear/collection";
-import { ChevronDown, ChevronUp, Ghost, RefreshCcw, Slash, Trash2 } from "lucide-react";
+import { ChevronDown, ChevronUp, Ghost, MessageCircle, RefreshCcw, Slash, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { ClipLoader, PropagateLoader } from "react-spinners";
@@ -11,7 +11,7 @@ import { useCommentsStore } from "../stores/comments";
 import { GetFromSessionStorage } from "@/app/lib/utils/session-storage";
 import { produce } from "immer";
 import Link from "next/link";
-import { FRONTEND_URL } from "../../../../../../../../../../../../domain";
+import { FRONTEND_URL, MEDIA_GET_URL } from "../../../../../../../../../../../../domain";
 import { useUserStore } from "@/app/(main)/me/profile/local_comps/stores/user";
 
 //font
@@ -20,14 +20,18 @@ function ReplyHead({details, info}){
     const profile =  useUserStore((state) => state.profile);
     const [dataUri, setDataUri] = useState("/logo.png");
     const [isSliced, setIsSliced] = useState(true);
-    const { anonymous_name, comment, avatar, created_at, school, comment_id } = details;
+    const { anonymous_name, comment, avatar, created_at, school, comment_id, profile_photo } = details;
     const [showDelete, setShowDelete] = useState(false);
     const [loading, setLoading] = useState(false);
     const [failed, setFailed] = useState(false);
 
     useEffect(() => {
         if (!avatar) return;
-        setDataUri(createAvatar(Collection[avatar.style], { seed: avatar.seed }).toDataUri());
+        let url = null; 
+
+        if(profile_photo) url = `${MEDIA_GET_URL}/${profile_photo}_50.webp`;
+        if(!url) url = createAvatar(Collection[avatar.style], { seed: avatar.seed }).toDataUri();
+        setDataUri(url);
     }, [avatar]);
 
     const handleDelete = async () => {
@@ -152,7 +156,7 @@ export default function Section2C({info}){
 
     return (
         <div className="mt-2 border-t border-gray-900 p-3 pt-3">
-            <p className="text-lg flex flex-row items-center gap-2"><Ghost/> Ghosts</p>
+            <p className="text-lg flex flex-row items-center gap-2"><MessageCircle/> Comments</p>
             <div className="flex flex-col gap-5 mt-5">
                 {comments.map((details) => (
                     <ReplyHead key={details.comment_id} info={info} details={details}/>
@@ -166,9 +170,8 @@ export default function Section2C({info}){
                     </>:<div className="flex flex-col items-center gap-3">
                         <div className="relative">
                             <Ghost size={70} className="relative top-0 left-0"/>
-                            <Slash size={80} className="absolute top-0 left-0"/>
                         </div>
-                        No ghosts here
+                        No comments here
                     </div>}
                 </div>
                 <div className="w-full h-[90px]">{/**compensate for the height taken up by text area at the bottom */}</div>

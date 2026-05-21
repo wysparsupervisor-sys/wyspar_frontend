@@ -5,14 +5,11 @@ import { usePostContext } from "../context";
 import { produce } from "immer";
 import GetLocationStatus from "../local_comps/get-location-status";
 import { ClipLoader } from "react-spinners";
-import { POST_CATEGORIES, POST_CATEGORIES_ICONS } from "@/app/lib/data/post-categories";
 
 
 export default function PostHeader({setAction}){
     const { data, setData } = usePostContext();
     const [geoRes, setGeoRes] = useState(null);
-    const [selectedCart, setSelectedCart] = useState(data.form.category || null);
-    const icons = POST_CATEGORIES_ICONS;
 
     function GetLocationData(){ 
         setGeoRes(null);
@@ -27,11 +24,6 @@ export default function PostHeader({setAction}){
         GetLocationData();
     }, []);
 
-    useEffect(() => {
-        if(selectedCart) setData(current => produce(current, draft => { draft.form.category = selectedCart }));
-    }, [selectedCart]);
-
-
     return(
         <div className="flex flex-row items-center z-1 gap-1 h-13 p-2 text-sm">
             <ArrowLeft onClick={() => setAction("select")} className="flex-shrink-0" size={30} strokeWidth={1.6}/>
@@ -39,7 +31,6 @@ export default function PostHeader({setAction}){
                 <MapPin color="orangered"/>
                 <p className={`bg-black flex flex-row items-center gap-2 p-1 border-2 ${geoRes === "on-campus" && "border-[greenyellow]"} ${geoRes === "near-campus" && "border-[orangered]"} ${geoRes === "off-campus" && "border-[red]"} ${((geoRes === "unreliable") || (geoRes === "no permission") || !geoRes) && "border-gray-500"} rounded-full pl-3 pr-3`}>{geoRes ? <>{((geoRes == "unreliable") || (geoRes == "no permission")) ? <><RefreshCcw onClick={GetLocationData} color="white" size={15}/>{geoRes}</>:geoRes}</>:<><ClipLoader color="white" size={15}/>loading...</>}</p>
             </div>
-            <DropDownSmall selected={selectedCart} setSelected={setSelectedCart} title="Category" icons={icons} options={POST_CATEGORIES}/>
         </div>
     );
 };

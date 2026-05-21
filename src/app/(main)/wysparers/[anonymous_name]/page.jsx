@@ -42,10 +42,10 @@ export default function ProfileVisitor(){
 
     return( 
         <>
-            {profile ? <div className="h-full relative">
+            {profile ? 
                 <Section4 anonymous_name={anonymous_name}/>
-            </div>:<StarsBackground/>}
-            <div className="flex flex-col items-center justify-center gap-3 h-full">
+            :<StarsBackground/>}
+            {!profile && <div className="flex flex-col items-center justify-center gap-3 h-full">
                 {exists === false && <><p>User doesn't exist</p>
                 <Link href="/me/profile" className="w-40"><Button>My Profile</Button></Link></>}
                 {retry === true && <>
@@ -53,7 +53,7 @@ export default function ProfileVisitor(){
                     <RefreshCcw size={50} onClick={GetProfileData}/>
                 </>}
                 {hasExpired && <ExpiryWarning/>}
-            </div>
+            </div>}
         </>
     );
 };

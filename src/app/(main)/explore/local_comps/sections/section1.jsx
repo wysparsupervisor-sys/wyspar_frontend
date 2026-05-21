@@ -1,112 +1,80 @@
-"use client";
-import { POST_CATEGORIES, POST_CATEGORIES_ICONS } from "@/app/lib/data/post-categories";
+"use client"
+import { MapPin, UserSearch } from "lucide-react";
 import { useFeedStore } from "../stores/feed";
-import { Circle } from "lucide-react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, EffectCards } from "swiper/modules";
-import "swiper/css/effect-cards";
-import "swiper/css";
-import "swiper/css/navigation";
-import ConnectBody from "@/app/components/connect_body";
-import Request from "@/app/lib/utils/request";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { GetFromLocalStorage, SaveToLocalStorage } from "@/app/lib/utils/local-storage";
-import Section3 from "./section3";
+import { useEffect, useRef } from "react";
+import { useScrollStore } from "@/app/(main)/store";
+import { useCampusTodayStore } from "../stores/campus-today";
 
 export default function Section1(){
-    const [connects, setConnects] = useState([]);
-    const [connectBlock, setConnectBlock] = useState();
-    const [isDiscoveringConnects, setIsDiscoveringConnects] = useState(false);
-    const [loading, setLoading] = useState(true);
-    const updatePostCategory = useFeedStore((state) => state.updatePostCategory);
-    const postCategory = useFeedStore((state) => state.postCategory);
+    const changeFeedState = useFeedStore((state) => state.changeFeedState);
+    const feedState = useFeedStore((state) => state.feedState);
 
-    const LoadConnects = async () => {
-        setLoading(true);
-        //check cache first
-        const cached = GetFromLocalStorage('personalized_connect');
-        if(cached) {
-            setConnects(cached);
-        } else {
-            const res = await Request("/app/connect_feed?action=personalized", "GET");
-            if (res.ok) {
-                setConnects(res.body || []);
-                SaveToLocalStorage('personalized_connect', res.body, 1000 * 60 * 60 * 1);
-            };
-        };
-        
-        setLoading(false);
-    };
+    const forYouState = useCampusTodayStore((state) => state.forYouState);
+    const changeForYouState = useCampusTodayStore((state) => state.changeForYouState);
+
+    const scrollListen = useScrollStore((state) => state.scrollListen);
+    
+    const hidden = useScrollStore(state => state.hidden);
+    const setHidden = useScrollStore(state => state.setHidden);
+    const containerRef = useRef(null);
+    const lastScroll = useRef(0);
+    
 
     useEffect(() => {
-        const val = GetFromLocalStorage("connect-block") ? true:false;
-        setConnectBlock(val);
-        LoadConnects();
-    }, []);
+        const el = scrollListen?.current ?? containerRef.current;
+        if(!el) return;
+        let ticking = false;
 
-    const InviteFriends = async () => {
-        try {
-            await navigator.share({
-                title: "Check out this app made for campus.",
-                text: "It's for finding people on campus that match your vibes and also a social media app for students specifically.",
-                url: "https://www.wyspar.com/share",
+        function onScroll(){
+            if(!ticking) {
+            window.requestAnimationFrame(() => {
+                const scrollTop = el.scrollTop;
+                const scrollHeight = el.scrollHeight;
+                const clientHeight = el.clientHeight;
+
+                const atBottom = scrollTop + clientHeight >= scrollHeight - 2;
+                const atTop = scrollTop <= 2;
+
+                if(!atBottom && !atTop) {
+                const delta = scrollTop - lastScroll.current;
+                if(Math.abs(delta) > 2) {
+                    setHidden(delta > 0);
+                };
+                };
+
+                lastScroll.current = scrollTop;
+                ticking = false;
             });
-            setConnectBlock(false);
-            localStorage.removeItem("connect-block");
-        } catch (error) {
-            console.log(error);
+            ticking = true;
+            };
         };
-    };
+
+        el.addEventListener("scroll", onScroll, { passive: true });
+        return () => el.removeEventListener("scroll", onScroll);
+    }, [scrollListen]);
 
     return (
-        <>
-            <div className="w-full mt-[55px] flex flex-row items-center justify-around gap-3 p-2 pt-0 overflow-x-scroll">
-                <p onClick={() => updatePostCategory("all")} className={`flex flex-row items-center gap-2 p-1.5 text-sm bg-gray-900/60 pl-4 pr-4 rounded-xl ${"all" === postCategory && "border-2 border-[#000090]/50"}`}><Circle size={20}/> all</p>
-                {POST_CATEGORIES.map((val, i) => {
-                    const Icon = POST_CATEGORIES_ICONS[val].icon;
-                    return (<p key={i} onClick={() => updatePostCategory(val)} className={`flex flex-row items-center gap-2 p-1.5 text-sm bg-gray-900/60 pl-4 pr-4 rounded-xl ${val === postCategory && "border-2 border-[#000090]/50"}`}><Icon size={20} color={POST_CATEGORIES_ICONS[val].color}/>{val}</p>)
-                })}
+        <div className={`flex flex-col items-center gap-1 justify-between pb-3 transition-all duration-500 ${hidden ? "mt-[-100px] pt-2":"mt-[55px] pt-0"}`}>
+            <div className="flex flex-row items-center justify-between relative w-full text-sm">
+                <div className="flex items-center pl-3">
+                    <div onClick={() => changeFeedState("for-you")} className={`flex items-center gap-1 bg-[rgb(6,19,60)] p-1 pl-5 pr-5 rounded-full border-2 transition duration-500 ease-in-out ${feedState === "for-you" ? "scale-100 border-white/80 opacity-100":"scale-80 border-transparent opacity-50"}`}>
+                        <span>For You</span>                    
+                    </div>
+                    {false && <div onClick={() => changeFeedState("near-you")} className={`flex items-center gap-1 bg-[rgb(6,19,60)] p-1 pl-5 pr-5 rounded-full border-2 transition duration-500 ease-in-out ${feedState === "near-you" ? "scale-100 border-white/80 opacity-100":"scale-80 border-transparent opacity-50"}`}>
+                        <div className="flex items-center justify-center rounded-full"><MapPin strokeWidth={1.5} size={25}/></div>
+                        <span>Near You</span> 
+                    </div>}
+                </div>
+                <div className="pr-3">
+                    <div onClick={() => changeFeedState("connect")} className={`p-1.5 border-2 rounded-full transition duration-500 ease-in-out ${feedState === "connect" ? "scale-100 opacity-100":"scale-80 opacity-50"}`}>
+                        <UserSearch strokeWidth={2}/>
+                    </div>
+                </div>
             </div>
-            <div className="pb-3 w-screen relative overflow-hidden">
-                <Swiper effect="cards" speed={800} modules={[Navigation,EffectCards]} spaceBetween={30} slidesPerView={1} navigation>
-                    {!loading && (connects.length > 0) && <>
-                        {connects.map((obj, i) => (
-                            <SwiperSlide>
-                                <ConnectBody info={obj} key={i}/>
-                            </SwiperSlide>
-                        ))}
-                        <SwiperSlide>
-                            <div className="flex flex-col items-center justify-center backdrop-blur bg-black/90 border-2 border-white/50 h-90 relative gap-1 ml-10 mr-10 rounded-2xl">
-                                <button className="pl-5 pr-5 p-2 backdrop-blur-xl rounded-lg border-1" onClick={() => setIsDiscoveringConnects(true)}>Discover more</button>
-                            </div>
-                            {isDiscoveringConnects && <Section3 setIsDiscovering={setIsDiscoveringConnects}/>}
-                        </SwiperSlide>
-                    </>}
-                    {loading && <>
-                        <SwiperSlide>
-                            <div className="ml-10 mr-10 rounded-2xl h-90 bg-[rgb(10,10,15)] overflow-hidden">
-                                <motion.div className="w-full h-full bg-gradient-to-r from-transparent via-[rgb(30,30,45)] to-transparent" animate={{x: ["-150%", "70%"]}} transition={{repeat: Infinity, repeatType: "loop", duration: 2, ease: "easeIn"}}></motion.div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="ml-10 mr-10 rounded-2xl h-90 bg-[rgb(10,10,15)] overflow-hidden">
-                                <motion.div className="w-full h-full bg-gradient-to-r from-transparent via-[rgb(30,30,45)] to-transparent" animate={{x: ["-150%", "70%"]}} transition={{repeat: Infinity, repeatType: "loop", duration: 2, ease: "easeIn"}}></motion.div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide>
-                            <div className="ml-10 mr-10 rounded-2xl h-90 bg-[rgb(10,10,15)] overflow-hidden">
-                                <motion.div className="w-full h-full bg-gradient-to-r from-transparent via-[rgb(30,30,45)] to-transparent" animate={{x: ["-150%", "70%"]}} transition={{repeat: Infinity, repeatType: "loop", duration: 2, ease: "easeIn"}}></motion.div>
-                            </div>
-                        </SwiperSlide>
-                    </>}
-                    {(!(connects.length > 0) && !loading) && <span className="text-xl text-gray-500 p-3">No connects available now</span>}
-                </Swiper>
-                {connectBlock && <div className="absolute top-0 left-0 bg-black/80 h-full w-full z-1 flex flex-col items-center justify-center p-5 gap-5">
-                    <p className="text-xl text-center text-gray-100">Invite 5 friends on WhatsApp to see all connects.</p> 
-                    <b onClick={InviteFriends} className="bg-[#000060] border-2 w-40 p-2 rounded-xl text-center">Invite Friends</b>        
-                </div>}
-            </div>
-        </>
+            {feedState === "for-you" && <div className="relative w-full pl-3 pr-3 flex items-center">
+                <span onClick={() => changeForYouState("campus-today")} className={`p-1 pr-3 pl-3 border-2 border-blue-800 rounded-2xl bg-[#000030] transition duration-500 ease-in-out ${forYouState === "campus-today" ? "scale-100 opacity-100":"scale-80 opacity-50"}`}>campus today</span>
+                <span onClick={() => changeForYouState("campus-space")} className={`p-1 pr-3 pl-3 border-2 border-blue-800 rounded-2xl bg-[#000030] transition duration-500 ease-in-out ${forYouState === "campus-space" ? "scale-100 opacity-100":"scale-80 opacity-50"}`}>campus space</span>
+            </div>}
+        </div>     
     );
 };

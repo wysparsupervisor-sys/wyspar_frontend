@@ -130,7 +130,7 @@ export default function Header({className , ...props}){
                 {pathname === "/explore" && <ClickEffect><Link href="/search"><Search/></Link></ClickEffect>}
                 {registering ? <ClipLoader color="white" size={20}/>:<div className="relative">
                     <Bell onClick={SubscribeToNotices}/>
-                    {isRecievingPush ? <Dot className="top-[-21px] right-[-17px] absolute pointer-events-none" color="greenyellow" size={50}/>:<X className="top-[-4px] right-[-1px] absolute pointer-events-none" color="red" size={15} strokeWidth={3}/>}
+                    {isRecievingPush ? <Dot className="top-[-21px] right-[-17px] absolute pointer-events-none" color="greenyellow" size={50}/>:<Dot className="top-[-21px] right-[-17px] absolute pointer-events-none" color="red" size={50}/>}
                 </div>}
             </div>
         </div>

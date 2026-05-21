@@ -3,6 +3,10 @@ import { produce } from "immer";
 import { create } from "zustand";
 
 export const useFeedStore = create((set) => ({
+    feedState:"for-you",
+    changeFeedState: (val) => set({ feedState: val }),
+    forYouState: "campus-today",
+    changeForYouState: (val) => set({ forYouState: val }),
     profile: null,
     setProfile: (fn) => set(fn),
     hasMore: true,

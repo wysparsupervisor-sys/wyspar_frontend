@@ -40,7 +40,7 @@ export default function SignUp() {
     return (
         <div className="h-full flex flex-col items-center justify-center gap-8">
             <StarsBackground2/>
-            <div className="w-2xs flex flex-col bg-black border border-gray-900 items-center rounded-xl p-6 pt-10 pb-8 gap-5">
+            <div className="w-2xs flex flex-col bg-black border border-gray-900 items-center rounded-3xl p-6 pt-10 pb-8 gap-5">
                 {currentSection===0 && <School context={{formInfo, setFormInfo}}/>}
                 {currentSection===1 && <AnonymousName context={{formInfo, setFormInfo}}/>}
                 {currentSection===2 && <Gender context={{formInfo, setFormInfo}}/>}
@@ -48,7 +48,7 @@ export default function SignUp() {
                 {currentSection===4 && <Email context={{formInfo, setFormInfo, setCurrentSection}}/>}
                 {currentSection===5 && <OTP context={{formInfo, setCurrentSection}}/>}
                 {currentSection===6 && <Password/>}
-                {currentSection < 4 && <button className="bg-[#5a0019ff] p-2 w-full rounded-sm" onClick={() => { setCurrentSection(prev => {
+                {currentSection < 4 && <button className="bg-[#5a0019ff] p-2 w-full rounded" onClick={() => { setCurrentSection(prev => {
                     SaveToSessionStorage("signup-state", prev + 1, 1000 * 60 * 10) 
                     return (prev+1);
                 })}}>Next</button>}
@@ -58,7 +58,7 @@ export default function SignUp() {
                 <button onClick={() => { setCurrentSection(prev => {
                     SaveToSessionStorage("signup-state", prev - 1, 1000 * 60 * 10) 
                     return (prev-1);
-                })}} className="border-2 ml-5 mb-5 p-2 pl-8 bg-black pr-8 rounded-sm border border-[#0a6464ff]">Previous</button>
+                })}} className="border-2 ml-5 mb-5 p-2 pl-8 bg-black pr-8 rounded-lg border border-[#0a6464ff]">Previous</button>
             </div>}
         </div>
     );

@@ -55,7 +55,7 @@ export default function Comments({info}){
                     <div>
                         <ClickEffect><ArrowLeft onClick={() => router.push("/explore")} strokeWidth={1.6} size={30}/></ClickEffect>
                     </div>
-                    <div className="flex-grow-1 w-full text-gray-200">Whisper & Ghosts</div>
+                    <div className="flex-grow-1 w-full text-gray-200">Campus post</div>
                 </div>
                 <Section1C info={info}/>
                 <Section2C info={info}/>

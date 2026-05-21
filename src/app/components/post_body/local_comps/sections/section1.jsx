@@ -7,19 +7,28 @@ import * as Collection from "@dicebear/collection";
 import Menu from "../miscellanious/menu";
 import { usePostViewContext } from "../../context";
 import Link from "next/link";
-import { FRONTEND_URL } from "../../../../../../domain";
+import { FRONTEND_URL, MEDIA_GET_URL } from "../../../../../../domain";
+import { GetFromLocalStorage } from "@/app/lib/utils/local-storage";
 
 
-export default function Section1({info, store}){
+export default function Section1({info}){
     const { postStates, _ } = usePostViewContext();
     const [dataUri, setDataUri] = useState("/logo.png");
     const profile = postStates.Store((state) => state.profile);
     const [menuIsVisible, setMenuIsVisible] = useState(false);
-    const { avatar, anonymous_name, school, created_at } = info;
+    const { avatar, profile_photo, anonymous_name, school, created_at } = info;
 
     useEffect(() => {
         const ava = createAvatar(Collection[avatar ? avatar.style : profile.details.avatar.style], { seed: avatar ? avatar.seed : profile.details.avatar.seed });
-        setDataUri(ava.toDataUri());
+
+        let url = null;
+        const v = GetFromLocalStorage("cache_query_hack") || "";
+
+        if(profile_photo && !postStates.isUser) url = `${MEDIA_GET_URL}/${profile_photo}_50.webp?v=${v}`;
+        if(profile?.details?.profile_photo && postStates.isUser) url = `${MEDIA_GET_URL}/${profile?.details?.profile_photo}_50.webp?v=${v}`;
+        if(!url) url = ava.toDataUri();
+
+        setDataUri(url);
     }, [profile]);
     
     return (

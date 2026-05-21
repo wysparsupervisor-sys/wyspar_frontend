@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { createAvatar } from "@dicebear/core";
 import * as Collection from "@dicebear/collection";
 import { useViewerStore } from "../stores/viewer";
-import Link from "next/link";
 import ProfileBackground from "../miscellenious/profile-bg";
 import { useRouter } from "next/navigation";
 import ClickEffect from "@/app/components/effects/click-effect";
+import { MEDIA_GET_URL } from "../../../../../../../domain";
 
 
 export default function Section1(){
@@ -17,7 +17,7 @@ export default function Section1(){
     
     useEffect(() => {
         const avatar = createAvatar(Collection[profile.details.avatar.style], { seed: profile.details.avatar.seed });
-        setDataUri(avatar.toDataUri());
+        setDataUri(profile.details.profile_photo ? `${MEDIA_GET_URL}/${profile.details.profile_photo}_240.webp` : avatar.toDataUri());
     }, [profile]);
 
     const handleBack = () => {
@@ -30,7 +30,7 @@ export default function Section1(){
 
     return (
         <>
-            <div className="absolute top-0 left-0 h-[50px] w-full bg-black z-1 border-b border-gray-900 flex flex-row items-center pl-3 gap-3"><div><ClickEffect><ArrowLeft onClick={handleBack} size={30}/></ClickEffect></div> Wysparer's profile</div>
+            <div className="fixed top-0 left-0 h-[50px] w-full bg-black z-1 border-b border-gray-900 flex flex-row items-center pl-3 gap-3"><div><ClickEffect><ArrowLeft onClick={handleBack} size={30}/></ClickEffect></div> <b>{profile.anonymous_name}'s profile</b></div>
             <div className="relative w-full bg-black overflow-hidden">
                 <div className="w-full h-[50px]"></div> {/**coompensate for space taken up by header] */}
                 <div className="relative w-full" style={{aspectRatio:"7/3"}}></div>

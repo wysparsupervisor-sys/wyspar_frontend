@@ -49,7 +49,8 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
   const scrollListen = useScrollStore((state) => state.scrollListen);
 
-  const [hidden, setHidden] = useState(false);
+  const hidden = useScrollStore(state => state.hidden);
+  const setHidden = useScrollStore(state => state.setHidden);
   const containerRef = useRef(null);
   const lastScroll = useRef(0);
 

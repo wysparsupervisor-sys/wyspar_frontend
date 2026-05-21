@@ -37,7 +37,7 @@ export default function Login() {
         <div className="h-full flex flex-col items-center justify-center gap-8">
             <StarsBackground2/>
             <h1 className="text-3xl">Welcome to {APP_NAME}</h1>
-            <div className="w-2xs flex bg-black flex-col items-center gap-10 rounded-xl p-6 pt-5 pb-8 border-2 border-gray-white">
+            <div className="w-2xs flex bg-black flex-col items-center gap-10 rounded-3xl p-6 pt-5 pb-8 border-2 border-gray-white">
                 <p className="text-2xl flex -mb-6 flex-row items-center justify-center gap-3"><Image src="/icon-512.png" alt="logo" width={80} height={80} className="rounded-full"/>Login</p>
                 <div className="flex flex-col gap-2">
                     {response && <p className="text-sm text-center text-[orangered]">{response}</p>}
@@ -58,7 +58,7 @@ export default function Login() {
                 </div>
             </div>
             <div className="flex flex-col bg-black items-center mt-3">
-                <Link href="/signup" className="relative border-2 p-2 pl-8 pr-8 rounded-sm border-[#0a6464ff]">Create Account</Link>
+                <Link href="/signup" className="relative border-2 p-2 pl-8 pr-8 rounded-xl border-[#0a6464ff]">Create Account</Link>
             </div>
         </div>
     );

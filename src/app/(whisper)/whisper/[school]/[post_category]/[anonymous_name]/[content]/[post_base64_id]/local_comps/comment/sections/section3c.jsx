@@ -58,9 +58,9 @@ export default function Section3C({className, info}){
             let obj;
             //if user has loaded their profile data into the zustand object then use that for optimistic ui else get it
             if (profile) {
-                obj = {created_at: res.body.created_at, comment_id: res.body.comment_id, avatar: profile.details.avatar, school: profile.school, anonymous_name: profile.anonymous_name, comment: comment}
+                obj = {created_at: res.body.created_at, comment_id: res.body.comment_id, avatar: profile.details.avatar, school: profile.school, anonymous_name: profile.anonymous_name, comment: comment, profile_photo: profile.details.profile_photo}
             } else {
-                obj = {created_at: res.body.created_at, comment_id: res.body.comment_id, avatar: res.body.details.avatar, school: res.body.school, anonymous_name: res.body.anonymous_name, comment: comment}
+                obj = {created_at: res.body.created_at, comment_id: res.body.comment_id, avatar: res.body.details.avatar, school: res.body.school, anonymous_name: res.body.anonymous_name, comment: comment, profile_photo: res.body.details.profile_photo}
             };
 
             //update certain things locally for optimistic ui first increment post comment couter locally

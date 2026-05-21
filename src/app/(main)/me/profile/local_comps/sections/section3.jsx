@@ -17,12 +17,7 @@ export default function Section3(){
 
     return (
         <>
-            <div className="mt-1 flex flex-row overflow-x-scroll justify-around text-sm gap-3 border-b border-gray-900 p-2">
-                <Nav name="all"/>
-                {types.map((val, i) => (
-                    <Nav name={val} key={i}/>
-                ))}
-            </div>
+            
         </>
     );
 };
