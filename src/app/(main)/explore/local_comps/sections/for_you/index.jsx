@@ -1,3 +1,4 @@
+"use client"
 import { useCampusTodayStore } from "../../stores/campus-today";
 import CampusSpace from "./sub_sections/campus-space";
 import CampusToday from "./sub_sections/campus-today";
