@@ -1,6 +1,6 @@
 "use client";
 import { useScrollStore } from "@/app/(main)/store";
-import { Dot, PackageOpen, RefreshCcw } from "lucide-react";
+import { Dot, RefreshCcw } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import PostBody from "@/app/components/post_body";
 import { PropagateLoader } from "react-spinners";
