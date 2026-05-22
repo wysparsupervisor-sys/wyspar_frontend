@@ -55,7 +55,7 @@ export default function Section1(){
 
     return (
         <div className={`flex flex-col items-center gap-1 justify-between pb-3 transition-all duration-500 ${hidden ? "mt-[-100px] pt-2":"mt-[55px] pt-0"}`}>
-            <div className="flex flex-row items-center justify-between relative w-full text-sm">
+            {false && <div className="flex flex-row items-center justify-between relative w-full text-sm">
                 <div className="flex items-center pl-3">
                     <div onClick={() => changeFeedState("for-you")} className={`flex items-center gap-1 bg-[rgb(6,19,60)] p-1 pl-5 pr-5 rounded-full border-2 transition duration-500 ease-in-out ${feedState === "for-you" ? "scale-100 border-white/80 opacity-100":"scale-80 border-transparent opacity-50"}`}>
                         <span>For You</span>                    
@@ -70,7 +70,7 @@ export default function Section1(){
                         <UserSearch strokeWidth={2}/>
                     </div>
                 </div>
-            </div>
+            </div>}
             {feedState === "for-you" && <div className="relative w-full pl-3 pr-3 flex items-center">
                 <span onClick={() => changeForYouState("campus-today")} className={`p-1 pr-3 pl-3 border-2 border-blue-800 rounded-2xl bg-[#000030] transition duration-500 ease-in-out ${forYouState === "campus-today" ? "scale-100 opacity-100":"scale-80 opacity-50"}`}>campus today</span>
                 <span onClick={() => changeForYouState("campus-space")} className={`p-1 pr-3 pl-3 border-2 border-blue-800 rounded-2xl bg-[#000030] transition duration-500 ease-in-out ${forYouState === "campus-space" ? "scale-100 opacity-100":"scale-80 opacity-50"}`}>campus space</span>

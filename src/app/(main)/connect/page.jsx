@@ -1,3 +1,4 @@
+"use client"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, EffectCards } from "swiper/modules";
 import "swiper/css/effect-cards";
@@ -8,7 +9,7 @@ import Request from "@/app/lib/utils/request";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { GetFromLocalStorage, SaveToLocalStorage } from "@/app/lib/utils/local-storage";
-import Section3 from "../section3";
+import Section3 from "./section3";
 
 
 export default function ExploreConnect(){
@@ -56,8 +57,8 @@ export default function ExploreConnect(){
     
     return (
         <>
-            {<div className="pb-3 w-screen relative overflow-x-hidden">
-                <div className="p-2 pl-10 text-xl">
+            {<div className="pb-3 w-screen relative overflow-x-hidden mt-[55px]">
+                <div className="p-2 text-xl text-center ">
                     Personalized Connects
                 </div>
                 <Swiper effect="cards" speed={800} modules={[Navigation,EffectCards]} spaceBetween={30} slidesPerView={1} navigation>

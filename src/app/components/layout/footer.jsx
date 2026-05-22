@@ -1,6 +1,6 @@
 "use client";
 import { useAnimation, motion } from "framer-motion";
-import { MessagesSquare, Search, Settings, Sparkles, Telescope, UserRound } from "lucide-react";
+import { MessagesSquare, Search, Settings, Sparkles, Telescope, UserRound, UserSearch, UsersRound } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -56,7 +56,7 @@ export default function Footer({className}){
             <FooterElement route="/explore" Icon={Sparkles} text="Explore" id="a" activeId={activeId} setActiveId={setActiveId}/>
             <FooterElement route="/search" Icon={Search} text="Search" id="c" activeId={activeId} setActiveId={setActiveId}/>
             <FooterElement route="/me/profile" Icon={UserRound} text="Profile" id="b" activeId={activeId} setActiveId={setActiveId}/>
-            <FooterElement route="/chat" Icon={MessagesSquare} text="Chat" id="f" activeId={activeId} setActiveId={setActiveId}/>
+            <FooterElement route="/connect" Icon={UsersRound} text="Connect" id="f" activeId={activeId} setActiveId={setActiveId}/>
             <FooterElement route="/manage" Icon={Settings} text="Manage" id="e" activeId={activeId} setActiveId={setActiveId}/>
         </div>
     );

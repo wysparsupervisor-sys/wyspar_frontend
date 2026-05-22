@@ -3,7 +3,7 @@ import Section1 from "./local_comps/sections/section1";
 import Section4 from "./local_comps/sections/near_you/section4";
 import { useFeedStore } from "./local_comps/stores/feed";
 import ForYouPage from "./local_comps/sections/for_you";
-import ExploreConnect from "./local_comps/sections/connect";
+import ExploreConnect from "../connect/page";
 
 export default function Explore(){
     const feedState = useFeedStore((state) => state.feedState);
