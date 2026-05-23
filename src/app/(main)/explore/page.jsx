@@ -8,7 +8,7 @@ import ExploreConnect from "../connect/page";
 export default function Explore(){
     const feedState = useFeedStore((state) => state.feedState);
     return (
-        <div className="h-full overflow-hidden">
+        <div className="h-full overflow-hidden relative">
             <Section1/>
             {feedState === "for-you" && <ForYouPage/>}
             {feedState === "near-you" && <Section4/>}

@@ -73,7 +73,8 @@ export default function CampusSpace(){
                             </div>}
                             {/*since we only use  has oore for subscription we can do this*/}
                             {!hasMore && <ExpiryWarning/>}
-                        </div>,                        
+                        </div>,   
+                        Header: () => <div className="mt-[100px]"></div>                     
                     }}
                 />
                 <div onClick={RefreshFeed} className="opacity-90 fixed z-1 bottom-22 right-7 p-2 bg-black border-2 border-gray-900 rounded-full"><ClickEffect><Ship size={20}/></ClickEffect></div>

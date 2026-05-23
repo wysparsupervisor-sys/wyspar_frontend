@@ -54,7 +54,7 @@ export default function Section1(){
     }, [scrollListen]);
 
     return (
-        <div className={`flex flex-col items-center gap-1 justify-between pb-3 transition-all duration-500 ${hidden ? "mt-[-100px] pt-2":"mt-[55px] pt-0"}`}>
+        <div className={`flex flex-col h-[45px] items-center justify-center absolute z-1 w-full bg-black items-center gap-1 justify-between transition-all duration-500 ${hidden ? "mt-[-120px]":"mt-[50px] "}`}>
             {false && <div className="flex flex-row items-center justify-between relative w-full text-sm">
                 <div className="flex items-center pl-3">
                     <div onClick={() => changeFeedState("for-you")} className={`flex items-center gap-1 bg-[rgb(6,19,60)] p-1 pl-5 pr-5 rounded-full border-2 transition duration-500 ease-in-out ${feedState === "for-you" ? "scale-100 border-white/80 opacity-100":"scale-80 border-transparent opacity-50"}`}>

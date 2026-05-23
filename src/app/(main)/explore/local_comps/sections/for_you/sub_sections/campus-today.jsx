@@ -98,7 +98,7 @@ export default function CampusToday(){
         <>
             <Virtuoso ref={containerRef} initialTopMostItemIndex={0} firstItemIndex={firstItemIndex} increaseViewportBy={{top: 200, bottom: 200}} scrollerRef={(el) => virtuosoRef.current = el} endReached={() => fetchFeed()} data={posts_filtered} itemContent={(i, post) => <PostBody store={useCampusTodayStore} key={post.post_id+i} info={post}/>}
                 components={{
-                    Header: () => <div>
+                    Header: () => <div className="mt-[100px]">
                         {daysBack != 0 && <div>
                             <button onClick={() => { updateDaysBack(0);}} className="flex items-center justify-center bg-[rgb(20,20,20)] w-full text-center text-sm border-2 border-gray-500">Go to current day <Dot size={30} color="greenyellow" style={{transform: "Scale(2)"}}/></button>
                         </div>}
