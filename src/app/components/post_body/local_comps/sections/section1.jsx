@@ -24,8 +24,8 @@ export default function Section1({info}){
         let url = null;
         const v = GetFromLocalStorage("cache_query_hack") || "";
 
-        if(profile_photo && !postStates.isUser) url = `${MEDIA_GET_URL}/${profile_photo}_50.webp?v=${v}`;
-        if(profile?.details?.profile_photo && postStates.isUser) url = `${MEDIA_GET_URL}/${profile?.details?.profile_photo}_50.webp?v=${v}`;
+        if(profile_photo) url = `${MEDIA_GET_URL}/${profile_photo}_50.webp?v=${v}`;
+        if(profile?.details?.profile_photo) url = `${MEDIA_GET_URL}/${profile?.details?.profile_photo}_50.webp?v=${v}`;
         if(!url) url = ava.toDataUri();
 
         setDataUri(url);

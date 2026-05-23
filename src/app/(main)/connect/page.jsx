@@ -58,7 +58,7 @@ export default function ExploreConnect(){
     return (
         <>
             {<div className="pb-3 w-screen relative overflow-x-hidden mt-[55px]">
-                <div className="p-2 text-xl text-center ">
+                <div className="p-2 text-xl text-center">
                     Personalized Connects
                 </div>
                 <Swiper effect="cards" speed={800} modules={[Navigation,EffectCards]} spaceBetween={30} slidesPerView={1} navigation>
