@@ -42,7 +42,7 @@ function ReplyHead({details, info}){
             setFailed(true);
         } else {
             useCommentsStore.setState(produce((state) => {
-                const index = state.commentGroups[info.post_id].findIndex((c) => c.comment_id = comment_id);
+                const index = state.commentGroups[info.post_id].findIndex((c) => c.comment_id === comment_id);
                 state.commentGroups[info.post_id].splice(index, 1);
             }));
         };

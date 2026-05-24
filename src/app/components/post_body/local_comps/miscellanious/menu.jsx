@@ -44,11 +44,11 @@ export default function Menu({className, info, menuIsVisible, school}){
                 let all_index = null;
                 let cat_index = null;
                 if (state.posts["all"]) {
-                    all_index = state.posts["all"].findIndex((p) => p.post_id = info.post_id);
+                    all_index = state.posts["all"].findIndex((p) => p.post_id === info.post_id);
                     console.log(all_index);
                 };
                 if (state.posts[POST_CATEGORIES[info.post_category]]) {
-                    cat_index = state.posts[POST_CATEGORIES[info.post_category]].findIndex((p) => p.post_id = info.post_id);
+                    cat_index = state.posts[POST_CATEGORIES[info.post_category]].findIndex((p) => p.post_id === info.post_id);
                 };
         
                 if ((all_index !== null) && (all_index !== -1)) {
