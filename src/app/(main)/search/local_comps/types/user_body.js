@@ -4,15 +4,16 @@ import { BarChart3, GraduationCap, User2 } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { FRONTEND_URL } from "../../../../../../domain";
+import { FRONTEND_URL, MEDIA_GET_URL } from "../../../../../../domain";
 import ClickEffect from "@/app/components/effects/click-effect";
 
 export default React.memo(function UserSearchResultBody({info}){
     const [dataUri, setDataUri] = useState("/logo.png");
-    const { gender, school, posts, anonymous_name, avatar } = info;
+    const { gender, school, posts, anonymous_name, avatar, profile_photo } = info;
 
     useEffect(() => {
         const ava = createAvatar(Collection[avatar.style], { seed: avatar.seed });
+        if(profile_photo) return setDataUri(`${MEDIA_GET_URL}/${profile_photo}_240.webp`)
         setDataUri(ava.toDataUri());
     }, []);
 

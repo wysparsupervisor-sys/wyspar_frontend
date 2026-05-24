@@ -23,14 +23,14 @@ export default function AvatarEdit(){
     const handleImageChnge = async (e) => {
         const options_240px = {
             maxSizeMB: 0.2, //max 200kb
-            maxWidthOrHeight: 240,
+            maxWidthOrHeight: 300,
             useWebWorker: true,
             fileType: "image/webp",
         };
 
         const options_50px = {
             maxSizeMB: 0.2, //max 200kb
-            maxWidthOrHeight: 50,
+            maxWidthOrHeight: 100,
             useWebWorker: true,
             fileType: "image/webp",
         };
