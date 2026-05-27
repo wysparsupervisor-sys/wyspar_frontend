@@ -16,7 +16,7 @@ export default function LogOut(){
         if (res.ok) {
             localStorage.clear();
             sessionStorage.clear();
-            router.push("/login");
+            window.location.href = "/login"
         };
     };
 
