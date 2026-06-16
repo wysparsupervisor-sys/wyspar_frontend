@@ -1,4 +1,4 @@
-import { FlagTriangleLeft, FlagTriangleRight, Ghost, Heart, MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react";
+import { Laugh, MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react";
 import ClickEffect from "../../../effects/click-effect";
 import { usePostViewContext } from "../../context";
 import { produce } from "immer";
@@ -43,7 +43,7 @@ export default function Section4({info}){
                 {millify(total_downvote, {precision: 1})}
             </div>
             <div className={baseStyle}>
-                <ClickEffect><Heart onClick={() => setLovedFunc()} strokeWidth={2} size={20} color={love_value === 1 ? "white" : "white"} fill={love_value === 1 ? "white":""}/></ClickEffect>
+                <ClickEffect><Laugh onClick={() => setLovedFunc()} strokeWidth={2} size={20} color={love_value === 1 ? "yellow" : "white"}/></ClickEffect>
                 {millify(total_love, {precision: 1})}
             </div>
             <div className={baseStyle}>

@@ -1,4 +1,4 @@
-import { Heart, MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react";
+import { Laugh, MessageCircle, ThumbsDown, ThumbsUp } from "lucide-react";
 import { updateInteraction } from "@/app/services/interaction";
 import ClickEffect from "@/app/components/effects/click-effect";
 import { useState } from "react";
@@ -37,7 +37,7 @@ export default function Section4({info}){
                 {millify(total_downvote, {precision: 1})}
             </div>
             <div className={baseStyle}>
-                <ClickEffect><Heart onClick={() => setLovedFunc()} strokeWidth={2} size={20} color={love_value === 1 ? "white" : "white"} fill={love_value === 1 ? "white":""}/></ClickEffect>
+                <ClickEffect><Laugh onClick={() => setLovedFunc()} strokeWidth={2} size={20} color={love_value === 1 ? "yellow" : "white"}/></ClickEffect>
                 {millify(total_love, {precision: 1})}
             </div>
             <div className={baseStyle}>
